@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://userzahar.github.io/new-news-only",
+  "homepage": "https://userzahar.github.io/new-news-only/",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /new-news-only/"
