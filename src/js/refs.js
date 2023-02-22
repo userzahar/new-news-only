@@ -1,7 +1,7 @@
 export const refs = {
  
   contentContainer: document.querySelectorAll('.content__container'),
-  favoritesContainer: document.querySelectorAll('.favorites__container'),
+  favoritesContainer: document.querySelector('.favorites__container'),
   item: document.querySelectorAll('.gallery__item'),
   galleryList: document.querySelectorAll('.gallery__list'),
   catagories: document.querySelector('.catagories'),

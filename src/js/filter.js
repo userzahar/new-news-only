@@ -1,11 +1,30 @@
 import { refs } from './refs';
+export {getSize}
+// if (
+//   window.location.pathname === '/' ||
+//   window.location.pathname === '/index.html'
+// ) {
+
+ function getSize(scr) {
+  let scrView = scr;
+   if (scrView === 'mobile') {
+    categoriesForMobile();
+  }
+  if  (scrView === 'tablet') {
+    categoriesForTablet();
+  }
+  if (scrView === 'desktop') {
+    categoriesForDesktop();
+  }
+}
+
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
 ) {
   const getCatagories = fetchCatagories();
   let lastClickedFilterBtn = null;
-  console.log('FETCH CATS');
+  // console.log('FETCH CATS');
   refs.btnCatagories.addEventListener('click', onBtnCatagoriesClick);
   refs.catagoriesItem.addEventListener('click', selectedCatagory);
   refs.listOfCatagories.addEventListener('click', selectedCatagory);
@@ -43,7 +62,8 @@ if (
       .then(res => res.json())
       .then(data => data.results);
   }
-  function categoriesForMobile() {
+
+ function categoriesForMobile() {
     refs.catagoriesItem.innerHTML = '';
     getCatagories.then(results => {
       const markUp = results.reduce(
@@ -54,10 +74,12 @@ if (
       refs.listOfCatagories.innerHTML = markUp;
     });
   }
+
   function createListOfSections({ section }) {
     return `<li class='catagories__item'><button data-name="${section}" class="catagory__btn">${section}</button></li>`;
   }
-  function categoriesForTablet() {
+
+ function categoriesForTablet() {
     refs.catagoriesItem.innerHTML = '';
     getCatagories.then(results => {
       const [first, second, third, forth, ...rest] = results;
@@ -78,7 +100,8 @@ if (
       refs.listOfCatagories.innerHTML = list;
     });
   }
-  function categoriesForDesktop() {
+
+ function categoriesForDesktop() {
     refs.catagoriesItem.innerHTML = '';
     getCatagories.then(results => {
       const [first, second, third, forth, fifth, sixth, ...rest] = results;
@@ -102,6 +125,7 @@ if (
       refs.listOfCatagories.innerHTML = list;
     });
   }
+
   function selectedCatagory(evt) {
     if (evt.target.nodeName !== 'BUTTON') {
       return;
@@ -120,4 +144,4 @@ if (
     ).then(res => res.json());
   }
 }
-export { categoriesForMobile, categoriesForTablet, categoriesForDesktop };
+// export { categoriesForMobile, categoriesForTablet, categoriesForDesktop };

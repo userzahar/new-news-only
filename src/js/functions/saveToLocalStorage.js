@@ -10,10 +10,8 @@ export {readNews}
 
 
 export function toLS(e) {
-  console.log(
-    'e.target.parentNode.parentNode', e.target.href
-  )
-  if (e.target.nodeName !== 'A') {
+  console.log('lols', e.target.className);
+  if (e.target.className !== 'gallery__link') {
     return;
   }
   const readObj = {
@@ -24,10 +22,7 @@ export function toLS(e) {
     link: e.target.href,
     readDate: getUserTime(),
   };
-  console.log(
-    'ALT',
-    e.target.parentNode.parentNode.childNodes[1].children
-  );
+  
   console.log('readObj', readObj);
   checkIfSaved(readObj);
   readNews.push(readObj);

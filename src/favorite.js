@@ -1,13 +1,18 @@
 import { refs } from './js/refs';
 import { favoritesInLocalStorage } from './js/localStorageFavorite';
+import { mqHandler } from "./js/functions/mqHandler";
 // console.log(favoritesInLocalStorage);
 
+console.log('on fav', favoritesInLocalStorage)
 
-refs.errorFind.classList.remove('notfind-part-hidden');
 
 if (
   window.location.pathname === '/favorite.html'
-) { 
+) { window.addEventListener('DOMContentLoaded', event => mqHandler());
+  if (localStorage.getItem('favoritesNews') !== null) {
+   refs.errorFind.classList.remove('notfind-part-hidden');
+  }
+  
 
 function renderFavorites(element, constMarkup) {
   refs.errorFind.classList.add('notfind-part-hidden');
@@ -47,7 +52,7 @@ favoritesInLocalStorage.map(el => {
 //   refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
 // }
 
-console.log(favoritesInLocalStorage);
+// console.log(favoritesInLocalStorage);
 
 if (favoritesInLocalStorage === null || favoritesInLocalStorage === []) {
   console.log('error');

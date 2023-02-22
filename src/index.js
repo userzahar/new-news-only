@@ -7,22 +7,14 @@ import './js/js-read/read';
 import './js/localStorageFavorite';
 import { toLS } from './js/functions/saveToLocalStorage';
 // import './js/functions/eventLiCard';
-// import { calendar } from './js/calendar';
+import { calendar } from './js/calendar';
 
 import { refs } from './js/refs';
+import {onBtnFavoriteClick} from '../src/js/localStorageFavorite'
 
-if (
-  window.location.pathname === '/favorite.html' ||
-  window.location.pathname === '/read.html'
-) {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
-}
-if (
-  (window.location.pathname === '/') ||
-  (window.location.pathname === '/index.html')
-) {
-  
-}
 
+('REF', refs.favoritesContainer)
 
 refs.contentContainer.forEach(container => container.addEventListener('click', toLS));
+
+

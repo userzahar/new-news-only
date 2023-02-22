@@ -2,12 +2,9 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { refs } from './refs';
-if (
-  window.location.pathname === '/' ||
-  window.location.pathname === '/index.html'
-) {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
-}
+if ((window.location.pathname === '/') || (window.location.pathname === '/index.html')) {
+  
+
 const options = {
   dateFormat: 'd/m/Y',
   maxDate: new Date(),
@@ -29,5 +26,5 @@ const calendar = flatpickr(refs.calendarInput, options);
 refs.datePickerWrap.addEventListener('click', () => {
   calendar.open();
 });
-
+}
 export { calendar };
