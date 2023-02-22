@@ -7,10 +7,13 @@ refs.galleryList.addEventListener('click', onBtnFavoriteClick);
 
 function checkFavorite() {
   if (JSON.parse(localStorage.getItem('favoritesNews')) === null) {
+      
     favoritesInLocalStorage = [];
+     
     return;
   }
   favoritesInLocalStorage = JSON.parse(localStorage.getItem('favoritesNews'));
+
 }
 
 checkFavorite();
@@ -23,6 +26,7 @@ function onBtnFavoriteClick(e) {
   if (!btn) return;
   // console.log(addBtn);
   checkFavorite();
+  
   // let title = btn.parentNode.parentNode.childNodes[3].textContent;
   // console.log(title);
   if (removeBtn.classList.contains('is-hidden')) {
@@ -66,6 +70,7 @@ function addToFavorite(btn) {
     'favoritesNews',
     JSON.stringify(favoritesInLocalStorage)
   );
+ 
   console.log(favoritesInLocalStorage);
 }
 
