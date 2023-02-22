@@ -1,4 +1,4 @@
-import { mqHandler } from './functions/mqHandler'
+import { mqHandler } from './functions/mqHandler';
 import { refs } from './refs';
 
 import { fetchNews } from './functions/fetchNews';
@@ -19,7 +19,7 @@ export let totalPages = 0;
 
 const formRef = document.querySelector('.search-field');
 const inputRef = document.querySelector('#search-field__input');
-
+let totalItems = 0;
 
 
 formRef.addEventListener('submit', onSubmit);
@@ -39,12 +39,13 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   if (window.innerWidth < 768) {
     itemsPerPage = 4;
   }
+
   totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
 
   normalizePop(data.results);
   // console.log(page);
-  createMarkup(markData, page)
+  createMarkup(markData, page);
 
   addToLocalStorate();
   // Do something with the data		
@@ -96,16 +97,16 @@ function onSubmit(e) {
 export function fetchSizer(size) {
 
   if (size === 'desktop') {
-    console.log('desk')
+    console.log('desk');
     // clearMarkup();
     // createMarkup(markData, page);
 
   } else if (size === 'tablet') {
-    console.log('tab')
+    console.log('tab');
     // clearMarkup();
     // createMarkup(markData, page);
   } else if (size === 'mobile') {
-    console.log('mobile')
+    console.log('mobile');
     // clearMarkup();
     // createMarkup(markData, page);
   }
