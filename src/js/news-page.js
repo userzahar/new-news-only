@@ -9,12 +9,15 @@ import { normalizeSrc } from './functions/markup';
 import { markData } from './functions/markup';
 // import {itemsPerPage} from './functions/markup';
 import { page } from './functions/markup';
+
 // import { addToLocalStorate } from './js-read/read'
 
 export let itemsPerPage = 8;
 export let totalPages = 0;
-
-
+export let srcPage = 1;
+export let searchReq = '';
+export let searchType = null;
+export { onSearch };
 
 
 if (
@@ -41,7 +44,8 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 
   totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
-
+  searchType = 'popular';
+  console.log(searchType);
   normalizePop(data.results);
  
   createMarkup(markData, page);
@@ -51,44 +55,57 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   // Do something with the data		
 })
 
-function onSearch(inputData) {
+function onSearch(inputData, srcPage) {
   fetchNews('/svc/search/v2/articlesearch.json', {
 
 
       q: inputData,
-      page: '1',
+      page: srcPage,
     }).then(data => {
       totalItems = data.response.docs.length;
+      searchType = 'word';
+      console.log(searchType);
+      if (data.response.meta.hits > 1000) {
+        totalPages = 100;
+      } else {
+        totalPages = data.response.meta.hits;
+      }
+
       
-      totalPages = Math.ceil(data.response.docs.length / itemsPerPage);
+      console.log(totalPages);
       refs.errorFind.classList.add('notfind-part-hidden');
       // console.log(totalItems);
       if (data.response.docs.length === 0) {
-          // console.log('Empty');
+        
         refs.paginationContainer.hidden = true;
         refs.errorFind.classList.remove('notfind-part-hidden');
         galleryСontainer.innerHTML = "";
         
       }
+      console.log(data.response.docs);
       normalizeSrc(data.response.docs);
-      createMarkup(markData, page);
+      console.log(srcPage);
+      createMarkup(markData, srcPage);
       
   });
-}
+  };
 
 // onSearch('ukraine');
 
-let searchReq = '';
+
 
 function createReq(e) {
   searchReq = e.target.value.trim();
 
+
   // console.log(searchReq);
-}
+  }
+  
+
 function onSubmit(e) {
   e.preventDefault();
   clearMarkup();
-  onSearch(searchReq);
+  onSearch(searchReq, srcPage);
 }
 }
 // export function fetchSizer(size) {
