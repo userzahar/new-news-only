@@ -7,7 +7,7 @@ navigator.geolocation.getCurrentPosition(
 )
 
 function fetchWeather(position) {
-    return fetch(`http://api.weatherapi.com/v1/current.json?key=be66b75c9aaf490dbaf162029231902&q=${position.coords.latitude}, ${position.coords.longitude}&aqi=no`)
+    return fetch(`https://api.weatherapi.com/v1/current.json?key=be66b75c9aaf490dbaf162029231902&q=${position.coords.latitude}, ${position.coords.longitude}&aqi=no`)
     .then((res)=> res.json())
     .then((data) => data)
     .catch((e) => console.error(e))
