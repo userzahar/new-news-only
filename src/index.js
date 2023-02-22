@@ -7,7 +7,7 @@ import './js/js-read/read';
 import './js/localStorageFavorite';
 import { toLS } from './js/functions/saveToLocalStorage';
 // import './js/functions/eventLiCard';
-// import { calendar } from './js/calendar';
+import { calendar } from './js/calendar';
 
 import { refs } from './js/refs';
 
