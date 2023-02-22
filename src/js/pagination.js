@@ -1,11 +1,12 @@
 import {createMarkup} from './functions/markup';
 import {clearMarkup} from './functions/markup';
 import {markData} from './functions/markup';
-import {normalizeSrc}  from './functions/markup';
+import { normalizeSrc } from './functions/markup';
+import { refs } from './refs';
 
-const paginationContainer = document.getElementById('pagination');
+
 function initPagination(totalPages, pagBtnQty) {
-  const pagination = new tui.Pagination(paginationContainer, {
+  const pagination = new tui.Pagination(refs.paginationContainer, {
     totalItems: totalPages,
     itemsPerPage: 1,
     visiblePages: pagBtnQty,

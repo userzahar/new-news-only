@@ -1,6 +1,6 @@
 import { mqHandler } from './functions/mqHandler';
 import { refs } from './refs';
-
+import Notiflix from 'notiflix';
 import { fetchNews } from './functions/fetchNews';
 import { createMarkup } from './functions/markup';
 import { clearMarkup } from './functions/markup';
@@ -88,6 +88,7 @@ let searchReq = '';
 
 function createReq(e) {
   searchReq = e.target.value.trim();
+
   // console.log(searchReq);
 }
 function onSubmit(e) {
