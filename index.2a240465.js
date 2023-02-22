@@ -1,0 +1,2 @@
+const t=document.querySelector(".pag__child");!async function(a){const n=await a,{totalHits:c,hits:i}=await n,o=await c/await i.length;!function(a){console.log("🚀 ~ totalPages",o);for(let a=1;a<=o;a+=1)t.insertAdjacentHTML("afterend",`<li>${a}</li>`)}()}(async function(t=1){const a=await fetch(`https://pixabay.com/api/?key=33289628-97fffc14136600725dd3f07c9&q=dog&page=${t}`);return await a.json()}());
+//# sourceMappingURL=index.2a240465.js.map
