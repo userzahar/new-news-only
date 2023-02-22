@@ -2,7 +2,9 @@ import { refs } from './js/refs';
 import { favoritesInLocalStorage } from './js/localStorageFavorite';
 // console.log(favoritesInLocalStorage);
 
+refs.errorFind.classList.remove('notfind-part-hidden');
 function renderFavorites(element, constMarkup) {
+  refs.errorFind.classList.add('notfind-part-hidden');
   element.insertAdjacentHTML('beforeend', constMarkup);
 }
 
@@ -40,6 +42,7 @@ console.log(favoritesInLocalStorage);
 
 if (favoritesInLocalStorage === null || favoritesInLocalStorage === []) {
   console.log('error');
+  
 }
 
 function onRemoveFavoriteBtn(e) {
@@ -71,8 +74,9 @@ function onRemoveFavoriteBtn(e) {
     'favoritesNews',
     JSON.stringify(favoritesInLocalStorage)
   );
-
+ 
   refs.galleryList.innerHTML = '';
+  refs.errorFind.classList.remove('notfind-part-hidden');
 
   favoritesInLocalStorage.map(el => {
     renderFavorites(refs.galleryList, createMarkup(el));
