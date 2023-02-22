@@ -114,4 +114,4 @@ export function fetchSizer(size) {
 };
 
 
-// const encoded = encodeURIComponent('crosswords & games'); //crosswords%20&%20games
+// const encoded = encodeURIComponent('crosswords & games'); 
