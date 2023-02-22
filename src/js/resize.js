@@ -1,16 +1,14 @@
 import { refs } from './refs';
-import {
-  categoriesForMobile,
-  categoriesForTablet,
-  categoriesForDesktop,
-} from './filter';
+
+import { categoriesComponent } from './filter';
+
 export default function onResize(size, toRemove) {
   if (
     window.location.pathname === '/' ||
     window.location.pathname === '/index.html'
   ) {
     for (let sizeRemove of toRemove) {
-      refs.name.classList.remove(`catagories__btn-name-${sizeRemove}`);
+      refs.othersBtnName.classList.remove(`catagories__btn-name-${sizeRemove}`);
       refs.listOfCatagories.classList.remove(`catagories__list-${sizeRemove}`);
       refs.catagories.classList.remove(`catagories-${sizeRemove}`);
       refs.btnCatagories.classList.remove(`catagories__btn-${sizeRemove}`);
@@ -19,34 +17,34 @@ export default function onResize(size, toRemove) {
 
     refs.catagories.classList.add(`catagories-${size}`);
 
-    refs.name.classList.add(`catagories__btn-name-${size}`);
+    refs.othersBtnName.classList.add(`catagories__btn-name-${size}`);
 
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
+
     if (size === 'mobile') {
-      refs.catagoriesItem.innerHTML = '';
-      categoriesForMobile();
-      // console.log('call  categoriesForMobile');
+      categoriesComponent?.renderForMobile();
     }
     if (size === 'tablet') {
-      refs.catagoriesItem.innerHTML = '';
-      categoriesForTablet();
-      // console.log('call  categoriesForTablet');
+      categoriesComponent?.renderForTablet();
     }
     if (size === 'desktop') {
-      refs.catagoriesItem.innerHTML = '';
-      categoriesForDesktop();
-      // console.log('call  categoriesForDesktop');
+      categoriesComponent?.renderForDesktop();
     }
+
   }
 
-  if ( window.location.pathname === '/' ||
-    window.location.pathname === '/index.html') {
+  refs.galleryList.forEach(list => {
     for (let sizeRemove of toRemove) {
-      refs.galleryList.classList.remove(`gallery__list-${sizeRemove}`);
+      list.classList.remove(`gallery__list-${sizeRemove}`);
     }
-    refs.galleryList.classList.add(`gallery__list-${size}`);
-  }
+    list.classList.add(`gallery__list-${size}`);
+  });
 
+  // if ( window.location.pathname === '/' ||
+  //   window.location.pathname === '/index.html') {
+
+
+  // }
 
   for (let sizeRemove of toRemove) {
     refs.logo.classList.remove(`logo-${sizeRemove}`);

@@ -31,8 +31,8 @@
     />
     <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
   </head>
+
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/components/header.html"></include>
 
     <main>
@@ -40,16 +40,16 @@
         <include src="./partials/components/filter.html"></include>
         <include src="./partials/common-elements/calendar.html"></include>
       </div>
-      <div class="container">
+      <div class="container content__container">
         <include src="./partials/components/gallery.html"></include>
         <include src="./partials/components/notfindnews.html"></include>
         <include src="./partials/components/pagination.html"></include>
         <!-- <include src="./partials/components/notfindnews.html"></include> -->
       </div>
     </main>
-     <include src="./partials/components/footer.html"></include>
+    <include src="./partials/components/footer.html"></include>
 
     <script type="module" src="./index.js"></script>
-    <script type="module" src="./js/news-page.js"></script>
   </body>
 </html>
+

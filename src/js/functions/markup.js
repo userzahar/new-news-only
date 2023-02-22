@@ -1,14 +1,11 @@
-import { initPagination } from '../pagination';
+import {initPagination} from '../pagination'
+import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
+import { searchType } from '../news-page';
+
 // import { itemsPerPage } from '../news-page';
 import {weather} from '../weather';
-
-// ! тут баг⬇
-import {totalPages, itemsPerPage} from '../news-page';
-// let itemsPerPage = 8;
-// let totalPages = 0;
-// !тут баг⬆
-
+let itemsPerPage = 8;
 let srartIndex = 0;
 let endIndex = 0;
 let weatherPos = 0;
@@ -19,9 +16,9 @@ export {page};
 
 let markData = {};
 export {markData};
-
+const paginationContainer = document.getElementById('pagination');
 const emptyCard = `<li class="gallery__item">${weather}</li>`;
-const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
+export const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
 const galleryRef = document.querySelector('.gallery__list');
 
 
@@ -50,8 +47,13 @@ function createMarkup(arr, page) {
   if (window.innerWidth >= 1280) {
 
     weatherPos = 2;
-    srartIndex = (page - 1) * itemsPerPage;
-    endIndex = srartIndex + itemsPerPage;
+    if (searchType === 'popular') {
+      srartIndex = (page - 1) * itemsPerPage;
+      endIndex = srartIndex + itemsPerPage;
+    }
+    if (searchType === 'word') {}
+      srartIndex = (page - 1) * itemsPerPage;
+      endIndex = srartIndex + itemsPerPage;
   
   }
   if (window.innerWidth < 1280 && window.innerWidth >= 780) {
@@ -70,9 +72,10 @@ function createMarkup(arr, page) {
     pagBtnQty = 3;
   }
 
-  initPagination(totalPages, pagBtnQty);
+    initPagination(totalPages, pagBtnQty);
   
-    const markup = arr.map(el => {
+  const markup = arr.map(el => {
+      
       return `<li class="gallery__item">
     <article class="gallery__article">
               <div class="gallery__thumb"> <p class="gallery__category">${el.category}</p>
@@ -100,7 +103,7 @@ function createMarkup(arr, page) {
     pageMarkup.splice(weatherPos, 0, emptyCard);
     const finishedMkp = pageMarkup.join('');
     // console.log(finishedMkp);
-    console.log("BEFORE");
+    // console.log("BEFORE");
     galleryRef.insertAdjacentHTML('beforeend', finishedMkp);
     mqHandler(); //додана функція для адаптивного відображення.
   }
@@ -189,8 +192,9 @@ function createMarkup(arr, page) {
         }
         const image = checkoutImg();
         const alt = 'New`s image';
+        const category = el.section_name;
         // console.log(image);
-        return { descr, date, title, source, image, alt };
+        return { descr, date, title, source, image, alt,  category};
       });
       // console.log(marks);
       markData = marks;

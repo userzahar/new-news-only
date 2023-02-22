@@ -1,3 +1,4 @@
+
 navigator.geolocation.getCurrentPosition(
     function(position) {
         localStorageCheck(position);
@@ -43,6 +44,7 @@ const weatherLocationCountry = load("weather today").data.location.region;
 const d = new Date();
 const y = d.toDateString().split(" ");
 const dayOFWeek = y[0].toString();
+
 export let weather = `<div class="weather">
 <div class="weather_wrap">
 <p class="weather_degree">${weatherDegreeTemp}&deg</p>
@@ -51,9 +53,10 @@ export let weather = `<div class="weather">
 <button type="button" class="weather_location"><p class="weather_country"></p>${weatherLocationCountry}</p></button>
 </div>
 </div>
+
 <img src="${weatherConditionImage}" alt="weather icon" width="165" height="156" class="weather_image">
 <p class="weather_date">${dayOFWeek}<br>
 ${y[2]} ${y[1]} ${y[3]}</p>
+
 <button type="button" class="weather_week"><p class="">weather for week</p></button>
 </div>`
-

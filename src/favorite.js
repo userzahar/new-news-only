@@ -2,11 +2,19 @@ import { refs } from './js/refs';
 import { favoritesInLocalStorage } from './js/localStorageFavorite';
 // console.log(favoritesInLocalStorage);
 
+
+refs.errorFind.classList.remove('notfind-part-hidden');
+
+if (
+  window.location.pathname === '/favorite.html'
+) { 
+
 function renderFavorites(element, constMarkup) {
+  refs.errorFind.classList.add('notfind-part-hidden');
   element.insertAdjacentHTML('beforeend', constMarkup);
 }
 
-function createMarkup({ title, img, description, source, category, date }) {
+function createMarkupFav({ title, img, description, source, category, date }) {
   return `<li class="gallery__item">
     <article class="gallery__article">
               <div class="gallery__thumb"> <p class="gallery__category">${category}</p>
@@ -31,15 +39,19 @@ function createMarkup({ title, img, description, source, category, date }) {
 }
 
 favoritesInLocalStorage.map(el => {
-  renderFavorites(refs.galleryList, createMarkup(el));
+  renderFavorites(refs.galleryList, createMarkupFav(el));
 });
 
-//!!!!Remove favorite
-refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
+//!!!!Remove favorite ---------------------------------------------------------------RESTORE
+// if (window.location.pathname === '/favorite.html') {
+//   refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
+// }
+
 console.log(favoritesInLocalStorage);
 
 if (favoritesInLocalStorage === null || favoritesInLocalStorage === []) {
   console.log('error');
+  
 }
 
 function onRemoveFavoriteBtn(e) {
@@ -71,10 +83,12 @@ function onRemoveFavoriteBtn(e) {
     'favoritesNews',
     JSON.stringify(favoritesInLocalStorage)
   );
-
+ 
   refs.galleryList.innerHTML = '';
+  refs.errorFind.classList.remove('notfind-part-hidden');
 
   favoritesInLocalStorage.map(el => {
-    renderFavorites(refs.galleryList, createMarkup(el));
+    renderFavorites(refs.galleryList, createMarkupFav(el));
   });
+}
 }
