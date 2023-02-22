@@ -1,13 +1,15 @@
-import { refs } from './refs';
+import { galleryList } from './refs';
 import onResize from './resize';
 
 let favoritesInLocalStorage = [];
+
 // document.addEventListener('DOMContentLoaded', addListener);
 //  function addListener(e) {
 //    refs.galleryList.refs.galleryList.forEach(list => list.addEventListener('click', onBtnFavoriteClick))
 //    ;
 // }
 checkFavorite()
+
 function checkFavorite() {
   if (JSON.parse(localStorage.getItem('favoritesNews')) === null) {
       
