@@ -47,7 +47,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   createMarkup(markData, page);
   refs.paginationContainer.hidden = false;
   
-  addToLocalStorate();
+  // addToLocalStorate();
   // Do something with the data		
 })
 
