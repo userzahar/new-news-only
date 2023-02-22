@@ -1,64 +1,28 @@
-import onResize from './js/resize';
-import { mqHandler } from './js/functions/mqHandler';
-import getCatagories from './js/filter';
-import './js/js-header/dark-mode';
-import './js/js-header/mobile-menu';
-// import './js/js-read/read';
-import './js/localStorageFavorite';
+const li = document.querySelector('.pag__child');
 
-// import './js/functions/eventLiCard';
-import { calendar } from './js/calendar';
-
-import { refs } from './js/refs';
-
-if (
-  window.location.pathname === '/favorite.html' ||
-  window.location.pathname === '/read.html'
-) {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
-}
-
-console.log(window.location);
-
-refs.galleryList.addEventListener('click', toLS);
-let readNews;
-let fromLS = localStorage.getItem('read-news');
-if (fromLS) {
-  readNews = JSON.parse(fromLS);
-} else readNews = [];
-
-console.log('ReadNews', readNews);
-// readNews = readNews ? readNews.split('},') : [];
-let count = 0;
-
-// if(readNews){
-// readNews = JSON.parse(readData)
-// }
-
-function toLS(e) {
-  console.log(e.target.nodeName);
-  if (e.target.nodeName !== 'A') {
-    return;
-  }
-  count += 1;
-  const readObj = {
-    alt: e.target.parentNode.parentNode.childNodes[1].children[1].alt,
-    header: e.target.parentNode.parentNode.childNodes[3].textContent,
-    src: e.target.parentNode.parentNode.childNodes[1].children[1].src,
-    text: e.target.parentNode.parentNode.childNodes[5].textContent,
-    separator: 'separator',
-  };
-  console.log(
-    'ALT',
-    e.target.parentNode.parentNode.childNodes[1].children[1].alt
+async function getData(page = 1) {
+  const response = await fetch(
+    `https://pixabay.com/api/?key=33289628-97fffc14136600725dd3f07c9&q=dog&page=${page}`
   );
-  console.log('readObj', readObj);
-  readNews.push(readObj);
-  console.log('readNews after push', readNews);
-  const LSReadNewsJSON = JSON.stringify(readNews);
+  const data = await response.json();
 
-  localStorage.setItem('read-news', LSReadNewsJSON);
+  return data;
 }
 
-console.dir(document);
+async function pagination(dataObj) {
+  const data = await dataObj;
+  const { totalHits, hits } = await data;
+  const totalPages = (await totalHits) / (await hits.length);
 
+  function renderLi(totalPges) {
+    console.log('🚀 ~ totalPages', totalPages);
+
+    for (let i = 1; i <= totalPages; i += 1) {
+      li.insertAdjacentHTML('afterend', `<li>${i}</li>`);
+    }
+  }
+  renderLi(totalPages);
+  // function activeButton() {}
+  // function changePage() {}
+}
+pagination(getData());

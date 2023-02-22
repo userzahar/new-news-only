@@ -1,29 +1,63 @@
-import {createMarkup} from './functions/markup';
-import {clearMarkup} from './functions/markup';
-import {markData} from './functions/markup';
-import {normalizeSrc}  from './functions/markup';
+// import Pagination from 'tui-pagination';
+// import 'tui-pagination/dist/tui-pagination.css';
+// const gallery = document.querySelector('.gallery');
+// const button = document.querySelector('.button');
+// button.addEventListener('click', search);
+// // const options = {
+// //   totalItems: 10,
+// //   itemsPerPage: 10,
+// //   visiblePages: 20,
+// //   page: 1,
+// //   centerAlign: false,
+// //   firstItemClassName: 'tui-first-child',
+// //   lastItemClassName: 'tui-last-child',
+// //   template: {
+// //     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+// //     currentPage:
+// //       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+// //     moveButton:
+// //       '<a href="#" class="tui-page-btn tui-{{type}}">' +
+// //       '<span class="tui-ico-{{type}}">{{type}}</span>' +
+// //       '</a>',
+// //     disabledMoveButton:
+// //       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+// //       '<span class="tui-ico-{{type}}">{{type}}</span>' +
+// //       '</span>',
+// //     moreButton:
+// //       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+// //       '<span class="tui-ico-ellip">...</span>' +
+// //       '</a>',
+// //   },
+// // };
 
-const paginationContainer = document.getElementById('pagination');
-function initPagination(totalPages, pagBtnQty) {
-  const pagination = new tui.Pagination(paginationContainer, {
-    totalItems: totalPages,
-    itemsPerPage: 1,
-    visiblePages: pagBtnQty,
-  });
-  pagination.on('beforeMove', event => {
-    const currentPage = event.page;
-    clearMarkup();
-    createMarkup(markData, currentPage);
-    goToTop();
-     
-  });
-}
+// async function search(page) {
+//   const pokemon = await fetch(
+//     `https://pixabay.com/api/?key=33289628-97fffc14136600725dd3f07c9&q=dog&page=${page}`
+//   );
+//   const jsonPokemon = await pokemon.json();
+//   //   console.log('🚀 ~ jsonPokemon', jsonPokemon);
 
-function goToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
-export {initPagination};
+//   const hits = jsonPokemon.hits;
+//   //   console.log('🚀 ~ hits', hits);
+//   renderCard(hits, jsonPokemon);
+// }
 
+// function renderCard(arrObj, json) {
+//   const card = arrObj
+//     .map(({ largeImageURL }) => {
+//       return `<img src="${largeImageURL}"></img>`;
+//     })
+//     .join('');
+//   const options = {
+//     totalItems: json.totalHits,
+//     itemsPerPage: json.hits.length,
+//     visiblePages: 5,
+//   };
+//   gallery.innerHTML = card;
+//   const pagination = new Pagination('pagination', options);
+//   pagination.on('afterMove', evt => {
+//     const { page } = evt;
+//     // pagination.movePageTo(page);
+//     search(page);
+//   });
+// }

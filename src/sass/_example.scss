@@ -1,0 +1,18 @@
+.pag{
+  display: flex;
+  justify-content: center;
+}
+.pag__list{
+  display: flex;
+  list-style-type: none;
+}
+.pag__item {
+  padding: 8px;
+  margin: 8px;
+  cursor: pointer;
+  &--active{
+    font-weight: 800;
+    color:gold
+  }
+}
+
