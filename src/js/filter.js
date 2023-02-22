@@ -1,153 +1,217 @@
 import { refs } from './refs';
-import {initPagination} from './pagination';
+import { initPagination } from './pagination';
 import { createMarkup } from './functions/markup';
-import {clearMarkup} from './functions/markup';
-// import {fetchNews} from './functions/fetchNews';
-// import {itemsPerPage} from './functions/markup';
-// import { page } from './functions/markup';
+import { clearMarkup } from './functions/markup';
+import { mqHandler } from './functions/mqHandler';
+import { fetchNews } from './functions/fetchNews';
+import { itemsPerPage } from './functions/markup';
+import { page } from './functions/markup';
 
 let markData = {};
 
-if (
-  window.location.pathname === '/' ||
-  window.location.pathname === '/index.html'
-) {
-  const getCatagories = fetchCatagories();
-  let lastClickedFilterBtn = null;
-  
-  refs.btnCatagories.addEventListener('click', onBtnCatagoriesClick);
-  refs.catagoriesItem.addEventListener('click', selectedCatagory);
-  refs.listOfCatagories.addEventListener('click', selectedCatagory);
-  function onBtnCatagoriesClick(e) {
-    e.stopPropagation();
-    const expanded =
-      refs.btnCatagories.getAttribute('aria-expanded') === 'true' || false;
-    refs.btnCatagories.classList.toggle('is-open');
-    refs.btnCatagories.setAttribute('aria-expanded', !expanded);
-    refs.btnCatagories.classList.toggle('btn-color');
-    refs.listOfCatagories.classList.toggle('is-open');
-    console.log('onclick');
+const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
+
+function fetchCatagories() {
+  return fetch(
+    'https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=HunERBoFJkGno2ChxwL9g20UbJbd8EGL'
+  )
+    .then(res => res.json())
+    .then(data => data.results);
+}
+
+class CategoriesComponent {
+  #state = {
+    categories: [],
+    isExpanded: false,
+    lastClickedFilterBtn: null,
+  };
+
+  constructor() {
+    refs.btnCatagories.addEventListener(
+      'click',
+      this.onBtnCatagoriesClick.bind(this)
+    );
+    refs.catagoriesItem.addEventListener(
+      'click',
+      this.selectedCatagory.bind(this)
+    );
+    refs.listOfCatagories.addEventListener(
+      'click',
+      this.selectedCatagory.bind(this)
+    );
+  }
+
+  setCategories(categories) {
+    this.#state.categories = categories;
+  }
+
+  onBtnCatagoriesClick() {
+    this.#state.isExpanded = true;
+    refs.btnCatagories.classList.add('is-open');
+    refs.btnCatagories.classList.add('btn-color');
+    refs.btnCatagories.setAttribute('aria-expanded', true);
+    refs.listOfCatagories.classList.add('is-open');
+
     const listner = () => {
-      console.log('inlistener');
-      if (refs.btnCatagories.classList.contains('btn-color')) {
-        refs.btnCatagories.classList.remove('btn-color');
-      }
-      if (refs.btnCatagories.getAttribute('aria-expanded') === 'true') {
-        refs.btnCatagories.setAttribute('aria-expanded', false);
-      }
-      if (refs.listOfCatagories.classList.contains('is-open')) {
-        refs.listOfCatagories.classList.remove('is-open');
-      }
-      if (refs.btnCatagories.classList.contains('is-open')) {
-        refs.btnCatagories.classList.remove('is-open');
-      }
+      refs.btnCatagories.classList.remove('is-open');
+      refs.btnCatagories.classList.remove('btn-color');
+      refs.btnCatagories.setAttribute('aria-expanded', false);
+      refs.listOfCatagories.classList.remove('is-open');
       window.removeEventListener('click', listner);
     };
-    window.addEventListener('click', listner);
+
+    window.removeEventListener('click', listner);
+    window.addEventListener('click', listner, true);
   }
-  function fetchCatagories() {
-    return fetch(
-      'https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=HunERBoFJkGno2ChxwL9g20UbJbd8EGL'
-    )
-      .then(res => res.json())
-      .then(data => data.results);
-  }
-  function categoriesForMobile() {
+
+  renderForMobile() {
     refs.catagoriesItem.innerHTML = '';
-    getCatagories.then(results => {
-      const markUp = results.reduce(
-        (markUp, result) => markUp + createListOfSections(result),
-        ''
+
+    const markUp = this.#state.categories.reduce((markUp, category) => {
+      return (
+        markUp +
+        `<li class='catagories__item'><button data-name="${category.section}" class="catagory__btn">${category.section}</button></li>`
       );
-      refs.name.textContent = 'Categories';
-      refs.listOfCatagories.innerHTML = markUp;
-    });
+    }, '');
+
+    refs.othersBtnName.textContent = 'Categories';
+    refs.listOfCatagories.innerHTML = markUp;
   }
-  function createListOfSections({ section }) {
-    return `<li class='catagories__item'><button data-name="${section}" class="catagory__btn">${section}</button></li>`;
+
+  renderForTablet() {
+    if (this.#state.categories.length === 0) {
+      return;
+    }
+
+    const [first, second, third, forth, ...rest] = this.#state.categories;
+
+    const markUp = `
+      <li class='catagories__item-tab'><button type="button" data-name="${
+        first.section
+      }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      first.section
+    )}">${first.section}</button></li>
+      <li class='catagories__item-tab'><button type="button" data-name="${
+        second.section
+      }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      second.section
+    )}">${second.section}</button></li>
+      <li class='catagories__item-tab'><button type="button" data-name="${
+        third.section
+      }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      third.section
+    )}">${third.section}</button></li>
+      <li class='catagories__item-tab'><button type="button" data-name="${
+        forth.section
+      }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      forth.section
+    )}">${forth.section}</button></li>
+      `;
+
+    const list = rest
+      .map(item => {
+        return ` <button type="button" data-name="${item.section}" class="catagory__btn-list-tab">${item.section}</button>`;
+      })
+      .join('');
+
+    refs.othersBtnName.textContent = 'Others';
+    refs.catagoriesItem.innerHTML = markUp;
+    refs.listOfCatagories.innerHTML = list;
   }
-  function categoriesForTablet() {
-    refs.catagoriesItem.innerHTML = '';
-    getCatagories.then(results => {
-      const [first, second, third, forth, ...rest] = results;
-      const markUp = `
-    <li class='catagories__item-tab'><button type="button" data-name="${first.section}" class="catagory__btn-tab">${first.section}</button></li>
-    <li class='catagories__item-tab'><button type="button" data-name="${second.section}" class="catagory__btn-tab">${second.section}</button></li>
-    <li class='catagories__item-tab'><button type="button" data-name="${third.section}" class="catagory__btn-tab">${third.section}</button></li>
-    <li class='catagories__item-tab'><button type="button" data-name="${forth.section}" class="catagory__btn-tab">${forth.section}</button></li>
-    `;
-      const list = `${rest
-        .map(
-          item =>
-            ` <button type="button" data-name="${item.section}" class="catagory__btn-list-tab">${item.section}</button>`
-        )
-        .join('')}`;
-      refs.name.textContent = 'Others';
-      refs.catagoriesItem.insertAdjacentHTML('afterbegin', markUp);
-      refs.listOfCatagories.innerHTML = list;
-    });
-  }
-  function categoriesForDesktop() {
-    refs.catagoriesItem.innerHTML = '';
-    getCatagories.then(results => {
-      const [first, second, third, forth, fifth, sixth, ...rest] = results;
-      const markUp = `
-    <li class='catagories__item-des'><button type="button" data-name="${first.section}" class="catagory__btn-tab">${first.section}</button></li>
-    <li class='catagories__item-des'><button type="button" data-name="${second.section}" class="catagory__btn-tab">${second.section}</button></li>
-    <li class='catagories__item-des'><button type="button" data-name="${third.section}" class="catagory__btn-tab">${third.section}</button></li>
-    <li class='catagories__item-des'><button type="button" data-name="${forth.section}" class="catagory__btn-tab">${forth.section}</button></li>
-    <li class='catagories__item-des'><button type="button" data-name="${fifth.section}" class="catagory__btn-tab">${fifth.section}</button></li>
-     <li class='catagories__item-des'><button type="button" data-name="${sixth.section}" class="catagory__btn-tab">${sixth.section}</button></li>
+
+  renderForDesktop() {
+    if (this.#state.categories.length === 0) {
+      return;
+    }
+
+    const [first, second, third, forth, fifth, sixth, ...rest] =
+      this.#state.categories;
+
+    const markUp = `
+        <li class='catagories__item-des'><button type="button" data-name="${
+          first.section
+        }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      first.section
+    )}">${first.section}</button></li>
+        <li class='catagories__item-des'><button type="button" data-name="${
+          second.section
+        }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      second.section
+    )}">${second.section}</button></li>
+        <li class='catagories__item-des'><button type="button" data-name="${
+          third.section
+        }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      third.section
+    )}">${third.section}</button></li>
+        <li class='catagories__item-des'><button type="button" data-name="${
+          forth.section
+        }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      forth.section
+    )}">${forth.section}</button></li>
+        <li class='catagories__item-des'><button type="button" data-name="${
+          fifth.section
+        }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      fifth.section
+    )}">${fifth.section}</button></li>
+        <li class='catagories__item-des'><button type="button" data-name="${
+          sixth.section
+        }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
+      sixth.section
+    )}">${sixth.section}</button></li>
      `;
-      const list = `${rest
-        .map(
-          item =>
-            `<button type="button" data-name="${item.section}" class="catagory__btn-list-tab">${item.section}</button>
-          `
-        )
-        .join('')}`;
-      refs.name.textContent = 'Others';
-      refs.catagoriesItem.insertAdjacentHTML('afterbegin', markUp);
-      refs.listOfCatagories.innerHTML = list;
-    });
+    const list = rest
+      .map(
+        item =>
+          `<button type="button" data-name="${item.section}" class="catagory__btn-list-tab">${item.section}</button>`
+      )
+      .join('');
+
+    refs.othersBtnName.textContent = 'Others';
+    refs.catagoriesItem.innerHTML = markUp;
+    refs.listOfCatagories.innerHTML = list;
   }
 
-  const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
-
-  async function selectedCatagory(evt) {
+  async selectedCatagory(evt) {
     if (evt.target.nodeName !== 'BUTTON') {
       return;
     }
     const selectedCatagory = evt.target.dataset.name;
     const button = evt.target;
-    if (lastClickedFilterBtn) {
-      lastClickedFilterBtn.classList.remove('btn-color');
-    }
-    button.classList.add('btn-color');
-    lastClickedFilterBtn = button;
+
+    this.#state.lastClickedFilterBtn = button;
+
     const encoded = encodeURIComponent(selectedCatagory);
-    // console.log(button);
 
     const results = await fetchNewsByCategory(encoded, apiKey);
-    if (window.innerWidth >= 1280) {
-      itemsPerPage = 8;
-    }
-    if (window.innerWidth < 1280 && window.innerWidth >= 780) {
-      itemsPerPage = 7;
-    }
-    if (window.innerWidth < 768) {
-      itemsPerPage = 4;
-    }
-    totalItems = results.results.length;
-    totalPages = results.num_results;
 
-    arrForMarkup = results.results;
-    // console.log(arrForMarkup);
-    normalizePop(arrForMarkup);
+    normalizePop(results.results);
     clearMarkup();
     createMarkup(markDataNew, 1);
   }
+
+  addBtnColorIfIsSelected(dataName) {
+    if (
+      dataName === this.#state.lastClickedFilterBtn?.getAttribute('data-name')
+    ) {
+      return 'btn-color';
+    }
+
+    return '';
+  }
 }
+
+const categoriesComponent = new CategoriesComponent();
+
+if (
+  window.location.pathname === '/' ||
+  window.location.pathname === '/index.html'
+) {
+  fetchCatagories().then(categories => {
+    categoriesComponent.setCategories(categories);
+    mqHandler();
+  });
+}
+
 async function fetchNewsByCategory(section, apiKey) {
   const url = `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?&api-key=${apiKey}`;
   try {
@@ -179,7 +243,7 @@ function normalizePop(feed) {
       return el.title;
     }
     const title = ckeckoutTit();
-    // console.log(title.length);
+
     const source = el.url;
     function checkoutImg() {
       if (el.multimedia === null) {
@@ -204,4 +268,5 @@ function normalizePop(feed) {
 
   return markDataNew;
 }
-export { categoriesForMobile, categoriesForTablet, categoriesForDesktop };
+
+export { categoriesComponent };
