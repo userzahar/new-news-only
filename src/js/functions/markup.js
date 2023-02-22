@@ -3,11 +3,11 @@ import { mqHandler } from './mqHandler';
 // import { itemsPerPage } from '../news-page';
 import {weather} from '../weather';
 
-// ! тут баг
+// ! тут баг⬇
 // import {totalPages, itemsPerPage} from '../news-page';
 let itemsPerPage = 8;
 let totalPages = 0;
-// !тут баг
+// !тут баг⬆
 
 let srartIndex = 0;
 let endIndex = 0;
