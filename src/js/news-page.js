@@ -1,6 +1,6 @@
 import { mqHandler } from './functions/mqHandler';
 import { refs } from './refs';
-
+import Notiflix from 'notiflix';
 import { fetchNews } from './functions/fetchNews';
 import { createMarkup } from './functions/markup';
 import { clearMarkup } from './functions/markup';
@@ -11,22 +11,23 @@ import { markData } from './functions/markup';
 import { page } from './functions/markup';
 // import { addToLocalStorate } from './js-read/read'
 
-
 export let itemsPerPage = 8;
 export let totalPages = 0;
 
 
+// const paginationContainer = document.getElementById('pagination');
 
+if (
+  window.location.pathname === '/' ||
+  window.location.pathname === '/index.html'
+) {
 const formRef = document.querySelector('.search-field');
 const inputRef = document.querySelector('#search-field__input');
-let totalItems = 0;
-
 
 formRef.addEventListener('submit', onSubmit);
-inputRef.addEventListener('input', createReq);
 
 
-
+// inputRef.addEventListener('input', createReq);
 
 fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 }).then(data => {
@@ -46,18 +47,15 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   normalizePop(data.results);
   // console.log(page);
   createMarkup(markData, page);
-
+  refs.paginationContainer.hidden = false;
+  
   addToLocalStorate();
   // Do something with the data		
 })
-  .catch(error => {
-    console.error(error);
-    // Handle the error		
-  });
-
 
 function onSearch(inputData) {
   fetchNews('/svc/search/v2/articlesearch.json', {
+
 
       q: inputData,
       page: '1',
@@ -69,14 +67,16 @@ function onSearch(inputData) {
       // console.log(totalItems);
       if (data.response.docs.length === 0) {
           // console.log('Empty');
-          refs.errorFind.classList.remove('notfind-part-hidden');
-          galleryСontainer.innerHTML= "";
+        refs.paginationContainer.hidden = true;
+        refs.errorFind.classList.remove('notfind-part-hidden');
+        galleryСontainer.innerHTML = "";
+        
       }
       normalizeSrc(data.response.docs);
       createMarkup(markData, page);
-
+      
   });
-};
+}
 
 // onSearch('ukraine');
 
@@ -84,6 +84,7 @@ let searchReq = '';
 
 function createReq(e) {
   searchReq = e.target.value.trim();
+
   // console.log(searchReq);
 }
 function onSubmit(e) {
@@ -91,27 +92,24 @@ function onSubmit(e) {
   clearMarkup();
   onSearch(searchReq);
 }
+}
+// export function fetchSizer(size) {
 
+//   if (size === 'desktop') {
+//     console.log('desk')
+//     // clearMarkup();
+//     // createMarkup(markData, page);
 
+//   } else if (size === 'tablet') {
+//     console.log('tab')
+//     // clearMarkup();
+//     // createMarkup(markData, page);
+//   } else if (size === 'mobile') {
+//     console.log('mobile')
+//     // clearMarkup();
+//     // createMarkup(markData, page);
+//   }
 
-export function fetchSizer(size) {
+// };
 
-  if (size === 'desktop') {
-    console.log('desk');
-    // clearMarkup();
-    // createMarkup(markData, page);
-
-  } else if (size === 'tablet') {
-    console.log('tab');
-    // clearMarkup();
-    // createMarkup(markData, page);
-  } else if (size === 'mobile') {
-    console.log('mobile');
-    // clearMarkup();
-    // createMarkup(markData, page);
-  }
-
-};
-
-
-// const encoded = encodeURIComponent('crosswords & games'); 
+// const encoded = encodeURIComponent('crosswords & games'); //crosswords%20&%20games

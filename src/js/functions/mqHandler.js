@@ -20,5 +20,5 @@ export function mqHandler() {
   }
 
   onResize(size, toRemove);
-  fetchSizer(size);
+
 }
