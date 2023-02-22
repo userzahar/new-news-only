@@ -19,7 +19,7 @@ function toggleMenu() {
   } else if (!themeContainer.classList.contains('mobile')) {
     const debouncedThemeContainer = debounce(() => {
       themeContainer.classList.add('mobile');
-    }, 100);
+    }, 250);
 
     debouncedThemeContainer();
   }
