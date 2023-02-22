@@ -4,27 +4,17 @@ import {markData} from './functions/markup';
 import { normalizeSrc } from './functions/markup';
 import { refs } from './refs';
 
-
-function initPagination(totalPages, pagBtnQty) {
-  const pagination = new tui.Pagination(refs.paginationContainer, {
+const paginationContainer = document.getElementById('pagination');
+export function initPagination(totalPages, pagBtnQty) {
+  const pagination = new tui.Pagination(paginationContainer, {
     totalItems: totalPages,
     itemsPerPage: 1,
     visiblePages: pagBtnQty,
   });
-  pagination.on('beforeMove', event => {
+    pagination.on('beforeMove', event => {
     const currentPage = event.page;
     clearMarkup();
     createMarkup(markData, currentPage);
-    goToTop();
-     
   });
 }
-
-function goToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
-export {initPagination};
-
+// export {initPagination};

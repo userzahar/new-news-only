@@ -11,22 +11,23 @@ import { markData } from './functions/markup';
 import { page } from './functions/markup';
 // import { addToLocalStorate } from './js-read/read'
 
-
 export let itemsPerPage = 8;
 export let totalPages = 0;
 
+
 // const paginationContainer = document.getElementById('pagination');
 
+if (
+  window.location.pathname === '/' ||
+  window.location.pathname === '/index.html'
+) {
 const formRef = document.querySelector('.search-field');
 const inputRef = document.querySelector('#search-field__input');
-let totalItems = 0;
-
 
 formRef.addEventListener('submit', onSubmit);
-inputRef.addEventListener('input', createReq);
 
 
-
+// inputRef.addEventListener('input', createReq);
 
 fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 }).then(data => {
@@ -51,14 +52,10 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   addToLocalStorate();
   // Do something with the data		
 })
-  .catch(error => {
-    console.error(error);
-    // Handle the error		
-  });
-
 
 function onSearch(inputData) {
   fetchNews('/svc/search/v2/articlesearch.json', {
+
 
       q: inputData,
       page: '1',
@@ -78,9 +75,8 @@ function onSearch(inputData) {
       normalizeSrc(data.response.docs);
       createMarkup(markData, page);
       
-
   });
-};
+}
 
 // onSearch('ukraine');
 
@@ -96,27 +92,24 @@ function onSubmit(e) {
   clearMarkup();
   onSearch(searchReq);
 }
+}
+// export function fetchSizer(size) {
 
+//   if (size === 'desktop') {
+//     console.log('desk')
+//     // clearMarkup();
+//     // createMarkup(markData, page);
 
+//   } else if (size === 'tablet') {
+//     console.log('tab')
+//     // clearMarkup();
+//     // createMarkup(markData, page);
+//   } else if (size === 'mobile') {
+//     console.log('mobile')
+//     // clearMarkup();
+//     // createMarkup(markData, page);
+//   }
 
-export function fetchSizer(size) {
+// };
 
-  if (size === 'desktop') {
-    console.log('desk');
-    // clearMarkup();
-    // createMarkup(markData, page);
-
-  } else if (size === 'tablet') {
-    console.log('tab');
-    // clearMarkup();
-    // createMarkup(markData, page);
-  } else if (size === 'mobile') {
-    console.log('mobile');
-    // clearMarkup();
-    // createMarkup(markData, page);
-  }
-
-};
-
-
-// const encoded = encodeURIComponent('crosswords & games'); 
+// const encoded = encodeURIComponent('crosswords & games'); //crosswords%20&%20games
