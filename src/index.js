@@ -1,6 +1,6 @@
 import onResize from './js/resize';
 import { mqHandler } from './js/functions/mqHandler';
-import getCatagories from './js/filter';
+import getCatagories from './js/filter2';
 import './js/js-header/dark-mode';
 import './js/js-header/mobile-menu';
 import './js/js-read/read';

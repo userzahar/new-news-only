@@ -1,5 +1,7 @@
 import { refs } from './refs';
+
 import { categoriesComponent } from './filter';
+
 export default function onResize(size, toRemove) {
   if (
     window.location.pathname === '/' ||
@@ -18,6 +20,7 @@ export default function onResize(size, toRemove) {
     refs.othersBtnName.classList.add(`catagories__btn-name-${size}`);
 
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
+
     if (size === 'mobile') {
       categoriesComponent?.renderForMobile();
     }
@@ -27,6 +30,7 @@ export default function onResize(size, toRemove) {
     if (size === 'desktop') {
       categoriesComponent?.renderForDesktop();
     }
+
   }
 
   refs.galleryList.forEach(list => {
@@ -35,8 +39,10 @@ export default function onResize(size, toRemove) {
     }
     list.classList.add(`gallery__list-${size}`);
   });
+
   // if ( window.location.pathname === '/' ||
   //   window.location.pathname === '/index.html') {
+
 
   // }
 
