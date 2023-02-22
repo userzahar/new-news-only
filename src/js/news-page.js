@@ -15,7 +15,7 @@ import { page } from './functions/markup';
 export let itemsPerPage = 8;
 export let totalPages = 0;
 
-
+// const paginationContainer = document.getElementById('pagination');
 
 const formRef = document.querySelector('.search-field');
 const inputRef = document.querySelector('#search-field__input');
@@ -46,7 +46,8 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   normalizePop(data.results);
   // console.log(page);
   createMarkup(markData, page);
-
+  refs.paginationContainer.hidden = false;
+  
   addToLocalStorate();
   // Do something with the data		
 })
@@ -69,11 +70,14 @@ function onSearch(inputData) {
       // console.log(totalItems);
       if (data.response.docs.length === 0) {
           // console.log('Empty');
-          refs.errorFind.classList.remove('notfind-part-hidden');
-          galleryСontainer.innerHTML= "";
+        refs.paginationContainer.hidden = true;
+        refs.errorFind.classList.remove('notfind-part-hidden');
+        galleryСontainer.innerHTML = "";
+        
       }
       normalizeSrc(data.response.docs);
       createMarkup(markData, page);
+      
 
   });
 };
