@@ -200,12 +200,13 @@ class CategoriesComponent {
   }
 }
 
-const categoriesComponent = new CategoriesComponent();
+let categoriesComponent = null;
 
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
 ) {
+  categoriesComponent = new CategoriesComponent();
   fetchCatagories().then(categories => {
     categoriesComponent.setCategories(categories);
     mqHandler();
