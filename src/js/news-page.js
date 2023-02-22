@@ -45,11 +45,11 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   totalPages = Math.ceil(data.results.length / itemsPerPage);
 
   normalizePop(data.results);
-  // console.log(page);
+ 
   createMarkup(markData, page);
   refs.paginationContainer.hidden = false;
   
-  addToLocalStorate();
+  // addToLocalStorate();
   // Do something with the data		
 })
 

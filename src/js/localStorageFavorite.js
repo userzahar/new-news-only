@@ -2,9 +2,12 @@ import { refs } from './refs';
 import onResize from './resize';
 
 let favoritesInLocalStorage = [];
-
-refs.galleryList.addEventListener('click', onBtnFavoriteClick);
-
+// document.addEventListener('DOMContentLoaded', addListener);
+//  function addListener(e) {
+//    refs.galleryList.refs.galleryList.forEach(list => list.addEventListener('click', onBtnFavoriteClick))
+//    ;
+// }
+checkFavorite()
 function checkFavorite() {
   if (JSON.parse(localStorage.getItem('favoritesNews')) === null) {
       
@@ -16,7 +19,7 @@ function checkFavorite() {
 
 }
 
-checkFavorite();
+
 
 function onBtnFavoriteClick(e) {
   console.log('onBtnFavoriteClick',e.target.nodeName);

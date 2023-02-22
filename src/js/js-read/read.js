@@ -13,7 +13,6 @@ if (window.location.pathname === '/read.html') {
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
 }
 
-
 let accordeon = {};
 const readingDates = readNews.map(singleArticle => singleArticle.readDate);
 function onlyUnique(value, index, array) {
@@ -57,7 +56,7 @@ function createDailyList(readNewsArray) {
                     <p class="gallery__text">${el.text}</p>
                     <div class="gallery__item-bottom_wrap">
                         <span class="gallery__date">${el.readDate}</span>
-                        <a href="${el.source}" target="_blank" rel="noreferrer noopener" class="gallery__link">Read more</a>
+                        <a href="${el.link}" target="_blank" rel="noreferrer noopener" class="gallery__link">Read more</a>
                     </div>
                 </article>
              </li>`;
@@ -68,7 +67,6 @@ function createDailyList(readNewsArray) {
     } 
     );
     
-    // checks(refs.readNewsContainer.childElementCount)
 }
  
 function checks(el) {

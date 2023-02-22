@@ -67,7 +67,8 @@ function createMarkup(arr, page) {
 
     initPagination(totalPages, pagBtnQty);
   
-    const markup = arr.map(el => {
+  const markup = arr.map(el => {
+      
       return `<li class="gallery__item">
     <article class="gallery__article">
               <div class="gallery__thumb"> <p class="gallery__category">${el.category}</p>
