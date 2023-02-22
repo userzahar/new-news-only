@@ -1,0 +1,70 @@
+@import '../utils/variables';
+@import '../general-styles/general-classes';
+@import '../components/mobile_menu';
+
+.notfind-part {
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+   
+
+    @media  screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+      margin-top: 48px;
+       margin-bottom: 42px; 
+   
+    }
+  
+    @media screen and (min-width:  $desktop) {
+      margin-top: 33px;
+     margin-bottom: 167px; 
+   
+    }
+}
+.notfind-part-hidden {
+      display: none;
+    }
+  
+  
+  .notfind-title {
+    font-family: Manrope;
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 20px;
+    line-height: 27px;
+    margin-bottom: 40px;
+       
+    @media  screen and (min-width: $tablet){
+      font-size: 40px;
+      line-height: 55px;
+    } 
+
+  }
+  
+  .notfind-picture {
+    width: 248px;
+    height: 198px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../images/mobile.png");
+    margin-bottom: 59px;
+
+    @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+      background-image: url("../images/desctop.png");
+         width: 560px;
+        height: 444px;
+      }
+    
+      @media screen and (min-width: $desktop) {
+        background-image: url("../images/desctop.png");
+          width: 601px;
+          height: 478px;
+      } 
+
+  
+  }

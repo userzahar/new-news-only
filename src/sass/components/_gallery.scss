@@ -1,0 +1,155 @@
+.gallery__container {
+  display: flex;
+  justify-content: center;
+
+  @include tablet {}
+}
+
+.gallery__list {
+  flex-direction: row;
+  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  // @include tablet {
+  //     flex-direction: row;
+  //     justify-content: center;
+  //     flex-wrap: wrap;
+  // }
+}
+
+.gallery__list-tablet,
+.gallery__list-desktop {
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery__item {
+  display: flex;
+  flex-direction: column;
+  height: 675px;
+  max-width: 394px;
+  border-radius: 4px;
+}
+
+.gallery__item-tablet {
+  width: calc((100% - 30px) / 2);
+}
+
+.gallery__item-desktop {
+  width: calc((100% - 60px) / 3);
+}
+
+.gallery__img {
+  height: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.gallery__header {
+  height: 132px;
+  margin-bottom: 20px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+.gallery__text {
+  height: 66px;
+  margin-bottom: 20px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.gallery__item-bottom_wrap {
+  display: flex;
+}
+
+.gallery__date {
+  color: #a8a8a8;
+  font-family: 'Manrope', serif;
+  font-size: 14px;
+}
+
+.gallery__link {
+  color: #4440f6;
+  font-style: 14px;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.gallery__category {
+  @include font(12px, 16px);
+  background-color: #4440f6;
+  color: #ffffff;
+  position: absolute;
+  padding: 4px 8px 4px 8px;
+  height: 24;
+  left: 0px;
+  top: 40px;
+  background: rgba(68, 64, 247, 0.7);
+  border-radius: 0px 4px 4px 0px;
+}
+
+.gallery__favorite__btn {
+  @include font(12px, 16px);
+  position: absolute;
+  min-width: 126px;
+  height: 28px;
+  right: 12px;
+  bottom: 12px;
+  color: #111321;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 6px 12px 6px 12px;
+}
+
+.favorite__btn-span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.is-hidden {
+  visibility: hidden;
+}
+
+.gallery__thumb {
+  position: relative;
+  margin-bottom: 20px;
+  height: 395px;
+}
+
+// .gallery__item-tablet:last-child {
+//   display: none;
+// }
+
+// .gallery__item-mobile:last-child {
+//   display: none;
+// }
+
+// .gallery__item-mobile:nth-last-child(-n + 5) {
+//   display: none;
+// }
+
+// .gallery__item-mobile {
+//   max-width: 288px;
+// }
+
+// .gallery__item-tablet {
+//   max-width: 353px;
+// }
+
+// <<<<<<< HEAD
+// .gallery__item-mobile.gallery__item-tablet.gallery__item-desktop {
+//   display: block;
+//   max-width: 395px;
+// }
+// =======
+// .gallery__item-mobile.gallery__item-tablet.gallery__item-desktop {
+//   display: block;
+//   max-width: 395px;
+// }
+// >>>>>>> fc20acc076ef0c9a4ccef6f8fbd205343c06898e
