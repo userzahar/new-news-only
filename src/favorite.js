@@ -42,10 +42,10 @@ favoritesInLocalStorage.map(el => {
   renderFavorites(refs.galleryList, createMarkupFav(el));
 });
 
-//!!!!Remove favorite
-if (window.location.pathname === '/favorite.html') {
-  refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
-}
+//!!!!Remove favorite ---------------------------------------------------------------RESTORE
+// if (window.location.pathname === '/favorite.html') {
+//   refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
+// }
 
 console.log(favoritesInLocalStorage);
 

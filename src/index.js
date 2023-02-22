@@ -17,13 +17,12 @@ if (
 ) {
   window.addEventListener('DOMContentLoaded', event => mqHandler());
 }
-
-console.log(window.location);
 if (
-  window.location.pathname === '/' ||
-  window.location.pathname === '/index.html'
+  (window.location.pathname === '/') ||
+  (window.location.pathname === '/index.html')
 ) {
-  refs.galleryList.addEventListener('click', toLS);
+  
 }
 
-console.dir(document);
+
+refs.contentContainer.forEach(container => container.addEventListener('click', toLS));
