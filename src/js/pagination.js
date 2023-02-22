@@ -1,7 +1,8 @@
 import {createMarkup} from './functions/markup';
 import {clearMarkup} from './functions/markup';
 import {markData} from './functions/markup';
-// import {normalizeSrc}  from './functions/markup';
+import { normalizeSrc } from './functions/markup';
+import { refs } from './refs';
 
 const paginationContainer = document.getElementById('pagination');
 export function initPagination(totalPages, pagBtnQty) {
