@@ -9,27 +9,23 @@ import { normalizeSrc } from './functions/markup';
 import { markData } from './functions/markup';
 // import {itemsPerPage} from './functions/markup';
 import { page } from './functions/markup';
-
 // import { addToLocalStorate } from './js-read/read'
 
 export let itemsPerPage = 8;
 export let totalPages = 0;
-export let srcPage = 1;
-export let searchReq = '';
-export let searchType = null;
-export { onSearch };
+
+
 
 
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
 ) {
-  const formRef = document.querySelector('.search-field');
-  const inputRef = document.querySelector('#search-field__input');
+const formRef = document.querySelector('.search-field');
+const inputRef = document.querySelector('#search-field__input');
 
-  formRef.addEventListener('submit', onSubmit);
-  inputRef.addEventListener('input', createReq);
-};
+formRef.addEventListener('submit', onSubmit);
+inputRef.addEventListener('input', createReq);
 
 fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 }).then(data => {
@@ -45,8 +41,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 
   totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
-  searchType = 'popular';
-  // console.log(searchType);
+
   normalizePop(data.results);
  
   createMarkup(markData, page);
@@ -56,80 +51,46 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   // Do something with the data		
 })
 
-  function onSearch(inputData, srcPage) {
-    const promises = [];
-    for (let i = 1; i <= 5; i += 1) {
-      const promise = fetchNews('/svc/search/v2/articlesearch.json', {
-        q: inputData,
-        page: i.toString(),
-      }).then(data => {
-        return data.response.docs;
-      });
-      promises.push(promise);
-    };
-    Promise.all(promises).then(results => {
-      const intermediateArray = [];
-      results.forEach(docs => {
-        intermediateArray.push(...docs);
-      })
-      console.log(intermediateArray);
-      totalPages = intermediateArray.length / itemsPerPage;
-      normalizeSrc(intermediateArray);
-      createMarkup(markData, srcPage);
-    });
-   
-      // fetchNews('/svc/search/v2/articlesearch.json', {
+function onSearch(inputData) {
+  fetchNews('/svc/search/v2/articlesearch.json', {
 
 
-      //     q: inputData,
-      //     page: srcPage,
-      //   }).then(data => {
-      //     totalItems = data.response.docs.length;
-      //     searchType = 'word';
-      //     console.log(searchType);
-      //     if (data.response.meta.hits > 1000) {
-      //       totalPages = 100;
-      //     } else {
-      //       totalPages = data.response.meta.hits;
-      //     }
-
+      q: inputData,
+      page: '1',
+    }).then(data => {
+      totalItems = data.response.docs.length;
       
-      // console.log(totalPages);
+      totalPages = Math.ceil(data.response.docs.length / itemsPerPage);
       refs.errorFind.classList.add('notfind-part-hidden');
       // console.log(totalItems);
-      // if (data.response.docs.length === 0) {
+      if (data.response.docs.length === 0) {
+          // console.log('Empty');
+        refs.paginationContainer.hidden = true;
+        refs.errorFind.classList.remove('notfind-part-hidden');
+        galleryСontainer.innerHTML = "";
         
-      //   refs.paginationContainer.hidden = true;
-      //   refs.errorFind.classList.remove('notfind-part-hidden');
-      //   galleryСontainer.innerHTML = "";
-        
-      // }
-      // console.log(data.response.docs);
-   
-      // console.log(srcPage);
+      }
+      normalizeSrc(data.response.docs);
+      createMarkup(markData, page);
       
-      
-      // });
-    };
+  });
+}
 
 // onSearch('ukraine');
 
-
+let searchReq = '';
 
 function createReq(e) {
   searchReq = e.target.value.trim();
 
-
   // console.log(searchReq);
-  }
-  
-
+}
 function onSubmit(e) {
   e.preventDefault();
   clearMarkup();
-  onSearch(searchReq, srcPage);
-};
-
+  onSearch(searchReq);
+}
+}
 // export function fetchSizer(size) {
 
 //   if (size === 'desktop') {
