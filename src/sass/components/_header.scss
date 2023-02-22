@@ -7,23 +7,20 @@ body.darkMode {
     border-bottom: 1px solid rgba(244, 244, 244, 0.2);
   }
 
-  .catagory__btn-tab,
-  .catagories__btn-desktop,
-  .catagories__btn-tablet,
-  .catagories__btn-mobile {
+  .catagory__btn-tab {
     background-color: #ffffff;
   }
 
-  .catagories__btn-desktop.is-open,
-  .catagories__btn-tablet.is-open,
-  .catagories__btn-mobile.is-open {
-    color: #fff;
-    background-color: #4b48db;
+  .catagories__btn-desktop {
+    background-color: #ffffff;
   }
 
-  .catagory__btn-tab.btn-color {
-    color: #fff;
-    background-color: #4b48db;
+  .catagories__btn-tablet {
+    background-color: #ffffff;
+  }
+
+  .catagories__btn-mobile {
+    background-color: #ffffff;
   }
 
   .theme__dark {
@@ -158,7 +155,7 @@ body.darkMode {
 
 .search-field {
   margin-left: auto;
-
+  
   display: flex;
   background-color: transparent;
   height: 31px;
@@ -336,20 +333,20 @@ body.darkMode {
   transition: 0.4s;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   background-color: var(--white-color);
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--accent-color);
   border: 1px solid var(--white-color);
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px var(--accent-color);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(20px);
