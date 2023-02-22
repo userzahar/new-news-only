@@ -19,6 +19,7 @@ function checkFavorite() {
 checkFavorite();
 
 function onBtnFavoriteClick(e) {
+  console.log('onBtnFavoriteClick',e.target.nodeName);
   const btn = e.target.closest(`.gallery__favorite__btn`);
   const addBtn = btn.childNodes[1];
   const removeBtn = btn.childNodes[3];

@@ -39,13 +39,17 @@ export default function onResize(size, toRemove) {
     }
   }
 
-  if ( window.location.pathname === '/' ||
-    window.location.pathname === '/index.html') {
+  refs.galleryList.forEach(list => {
     for (let sizeRemove of toRemove) {
-      refs.galleryList.classList.remove(`gallery__list-${sizeRemove}`);
+      list.classList.remove(`gallery__list-${sizeRemove}`);
     }
-    refs.galleryList.classList.add(`gallery__list-${size}`);
-  }
+    list.classList.add(`gallery__list-${size}`);
+  });
+  // if ( window.location.pathname === '/' ||
+  //   window.location.pathname === '/index.html') {
+    
+    
+  // }
 
 
   for (let sizeRemove of toRemove) {
