@@ -24,11 +24,12 @@ if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
 ) {
-const formRef = document.querySelector('.search-field');
-const inputRef = document.querySelector('#search-field__input');
+  const formRef = document.querySelector('.search-field');
+  const inputRef = document.querySelector('#search-field__input');
 
-formRef.addEventListener('submit', onSubmit);
-inputRef.addEventListener('input', createReq);
+  formRef.addEventListener('submit', onSubmit);
+  inputRef.addEventListener('input', createReq);
+};
 
 fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 }).then(data => {
@@ -45,7 +46,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
   searchType = 'popular';
-  console.log(searchType);
+  // console.log(searchType);
   normalizePop(data.results);
  
   createMarkup(markData, page);
@@ -55,40 +56,61 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   // Do something with the data		
 })
 
-function onSearch(inputData, srcPage) {
-  fetchNews('/svc/search/v2/articlesearch.json', {
+  function onSearch(inputData, srcPage) {
+    const promises = [];
+    for (let i = 1; i <= 5; i += 1) {
+      const promise = fetchNews('/svc/search/v2/articlesearch.json', {
+        q: inputData,
+        page: i.toString(),
+      }).then(data => {
+        return data.response.docs;
+      });
+      promises.push(promise);
+    };
+    Promise.all(promises).then(results => {
+      const intermediateArray = [];
+      results.forEach(docs => {
+        intermediateArray.push(...docs);
+      })
+      console.log(intermediateArray);
+      totalPages = intermediateArray.length / itemsPerPage;
+      normalizeSrc(intermediateArray);
+      createMarkup(markData, srcPage);
+    });
+   
+      // fetchNews('/svc/search/v2/articlesearch.json', {
 
 
-      q: inputData,
-      page: srcPage,
-    }).then(data => {
-      totalItems = data.response.docs.length;
-      searchType = 'word';
-      console.log(searchType);
-      if (data.response.meta.hits > 1000) {
-        totalPages = 100;
-      } else {
-        totalPages = data.response.meta.hits;
-      }
+      //     q: inputData,
+      //     page: srcPage,
+      //   }).then(data => {
+      //     totalItems = data.response.docs.length;
+      //     searchType = 'word';
+      //     console.log(searchType);
+      //     if (data.response.meta.hits > 1000) {
+      //       totalPages = 100;
+      //     } else {
+      //       totalPages = data.response.meta.hits;
+      //     }
 
       
-      console.log(totalPages);
+      // console.log(totalPages);
       refs.errorFind.classList.add('notfind-part-hidden');
       // console.log(totalItems);
-      if (data.response.docs.length === 0) {
+      // if (data.response.docs.length === 0) {
         
-        refs.paginationContainer.hidden = true;
-        refs.errorFind.classList.remove('notfind-part-hidden');
-        galleryСontainer.innerHTML = "";
+      //   refs.paginationContainer.hidden = true;
+      //   refs.errorFind.classList.remove('notfind-part-hidden');
+      //   galleryСontainer.innerHTML = "";
         
-      }
-      console.log(data.response.docs);
-      normalizeSrc(data.response.docs);
-      console.log(srcPage);
-      createMarkup(markData, srcPage);
+      // }
+      // console.log(data.response.docs);
+   
+      // console.log(srcPage);
       
-  });
-  };
+      
+      // });
+    };
 
 // onSearch('ukraine');
 
@@ -106,8 +128,8 @@ function onSubmit(e) {
   e.preventDefault();
   clearMarkup();
   onSearch(searchReq, srcPage);
-}
-}
+};
+
 // export function fetchSizer(size) {
 
 //   if (size === 'desktop') {

@@ -15,18 +15,20 @@ export function initPagination(totalPages, pagBtnQty) {
     itemsPerPage: 1,
     visiblePages: pagBtnQty,
   });
+  console.log(totalPages);
     pagination.on('beforeMove', event => {
       const currentPage = event.page;
       if (searchType === 'popular') {
-        console.log('pop', searchType);
+        // console.log('pop', searchType);
         clearMarkup();
         createMarkup(markData, currentPage);
 
      } 
       if (searchType === 'word') {
-        console.log('wor', searchType);
+        // console.log('wor', searchType);
         clearMarkup();
-        onSearch(searchReq, currentPage);
+        console.log(currentPage);
+        createMarkup(markData, currentPage);
      } 
 
   });

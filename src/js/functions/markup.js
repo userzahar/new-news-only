@@ -52,7 +52,7 @@ function createMarkup(arr, page) {
       endIndex = srartIndex + itemsPerPage;
     }
     if (searchType === 'word') {}
-      srartIndex = 0;
+      srartIndex = (page - 1) * itemsPerPage;
       endIndex = srartIndex + itemsPerPage;
   
   }
