@@ -15,7 +15,7 @@ export let itemsPerPage = 8;
 export let totalPages = 0;
 
 
-// const paginationContainer = document.getElementById('pagination');
+
 
 if (
   window.location.pathname === '/' ||
