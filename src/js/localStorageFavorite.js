@@ -1,13 +1,11 @@
-import { galleryList } from './refs';
-import onResize from './resize';
+
+import { refs } from './refs';
+// import onResize from './resize';
 
 let favoritesInLocalStorage = [];
 
-// document.addEventListener('DOMContentLoaded', addListener);
-//  function addListener(e) {
-//    refs.galleryList.refs.galleryList.forEach(list => list.addEventListener('click', onBtnFavoriteClick))
-//    ;
-// }
+
+
 checkFavorite()
 
 function checkFavorite() {
@@ -23,17 +21,13 @@ function checkFavorite() {
 
 
 
-function onBtnFavoriteClick(e) {
-  console.log('onBtnFavoriteClick',e.target.nodeName);
+export function onBtnFavoriteClick(e) {
+  console.log('onBtnFavoriteClick', e.target.nodeName);
   const btn = e.target.closest(`.gallery__favorite__btn`);
   const addBtn = btn.childNodes[1];
   const removeBtn = btn.childNodes[3];
   if (!btn) return;
-  // console.log(addBtn);
-  checkFavorite();
   
-  // let title = btn.parentNode.parentNode.childNodes[3].textContent;
-  // console.log(title);
   if (removeBtn.classList.contains('is-hidden')) {
     addBtn.classList.add('is-hidden');
     removeBtn.classList.remove('is-hidden');
@@ -41,11 +35,6 @@ function onBtnFavoriteClick(e) {
     return;
   }
 
-  // for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
-  //   if (favoritesInLocalStorage[i].title === title) {
-  //     favoritesInLocalStorage.splice(i, 1);
-  //   }
-  // }
   localStorage.setItem(
     'favoritesNews',
     JSON.stringify(favoritesInLocalStorage)
@@ -65,9 +54,9 @@ function addToFavorite(btn) {
         .value,
   };
 
-  for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
-    if (favoritesInLocalStorage[i].title === favoriteData.title) return;
-  }
+  // for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
+  //   if (favoritesInLocalStorage[i].title === favoriteData.title) return;
+  // }
 
   favoritesInLocalStorage.push(favoriteData);
 
@@ -76,7 +65,8 @@ function addToFavorite(btn) {
     JSON.stringify(favoritesInLocalStorage)
   );
  
-  console.log(favoritesInLocalStorage);
+  console.log('on storage', favoritesInLocalStorage)
+  
 }
 
 export { favoritesInLocalStorage };

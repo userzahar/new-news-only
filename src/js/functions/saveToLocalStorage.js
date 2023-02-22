@@ -4,7 +4,7 @@ let fromLS = localStorage.getItem('read-news');
 if (fromLS) {
   readNews = JSON.parse(fromLS);
 } else readNews = [];
-export {readNews}
+export { readNews };
 
 
 
