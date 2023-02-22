@@ -1,9 +1,9 @@
 import {initPagination} from '../pagination'
 import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
-import { itemsPerPage } from '../news-page';
+// import { itemsPerPage } from '../news-page';
 import {weather} from '../weather';
-
+let itemsPerPage = 8;
 let srartIndex = 0;
 let endIndex = 0;
 let weatherPos = 0;
