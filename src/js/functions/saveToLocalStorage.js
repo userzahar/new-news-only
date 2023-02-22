@@ -17,16 +17,16 @@ export function toLS(e) {
     return;
   }
   const readObj = {
-    // alt: e.target.parentNode.parentNode.childNodes[1].children[1].alt, <<<<<<закоменутвав, бо була помилка
-    // header: e.target.parentNode.parentNode.childNodes[3].textContent,
-    // src: e.target.parentNode.parentNode.childNodes[1].children[1].src,
-    // text: e.target.parentNode.parentNode.childNodes[5].textContent,
-    // link: e.target.href,
+    alt: e.target.parentNode.parentNode.childNodes[1].children[1].alt,
+    header: e.target.parentNode.parentNode.childNodes[3].textContent,
+    src: e.target.parentNode.parentNode.childNodes[1].children[1].src,
+    text: e.target.parentNode.parentNode.childNodes[5].textContent,
+    link: e.target.href,
     readDate: getUserTime(),
   };
   console.log(
     'ALT',
-    // e.target.parentNode.parentNode.childNodes[1].children <<<<<<закоменутвав, бо була помилка
+    e.target.parentNode.parentNode.childNodes[1].children
   );
   console.log('readObj', readObj);
   checkIfSaved(readObj);
