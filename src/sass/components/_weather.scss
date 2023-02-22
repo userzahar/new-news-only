@@ -4,6 +4,7 @@
     font-weight: 400;
     padding-top: 37px;
     padding-bottom: 32px;
+    padding-left: 20px;
     max-height: 675px;
 }
 
@@ -26,7 +27,8 @@
     font-size: 28px;
     line-height: 1.1;
     margin-bottom: 5px;
-    height: 28px;
+    display: inline;
+    // height: 28px;
 }
 
 .weather_degree {
@@ -120,6 +122,12 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+
+    // background-image: url(/src/images/Sun.png);
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    // border-radius: 50%;
+
 }
 
 .weather_date{
@@ -159,6 +167,10 @@
         height: 42px;
         font-size: 20px;
         line-height: 1.15;
+
+        background-size: 25px;
+        background-position: 0px 8px;
+
     }
     .weather_image{
         width: 165px;
