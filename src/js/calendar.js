@@ -29,7 +29,7 @@ const options = {
     }
   },
   onValueUpdate(selectedDates, date, instance) {
-    instance.input.dataset.date = setDateForSort(selectedDates[0]); 
+    instance.input.dataset.date = setDateForSort(selectedDates[0]);
   },
   onMonthChange(selectedDates, dateStr, instance) {
     if (!selectedDates[0]) {
@@ -38,10 +38,12 @@ const options = {
     selectedDates[0] = new Date(
       selectedDates[0].setMonth(instance.currentMonth)
     );
-    selectedDates[0] = new Date(selectedDates[0].setFullYear(instance.currentYear));
+    selectedDates[0] = new Date(
+      selectedDates[0].setFullYear(instance.currentYear)
+    );
     instance.selectedDateElem.dateObj = selectedDates[0];
     insertSelectedDate(selectedDates, dateStr, instance);
-
+    setSelectedElementClass(selectedDates, instance);
     return { selectedDates, dateStr };
   },
   onYearChange: function (selectedDates, dateStr, instance) {
@@ -49,17 +51,36 @@ const options = {
       return;
     }
     isDateSelect(selectedDates[0]);
-    selectedDates[0] = new Date(selectedDates[0].setFullYear(instance.currentYear));
+    selectedDates[0] = new Date(
+      selectedDates[0].setFullYear(instance.currentYear)
+    );
     insertSelectedDate(selectedDates, dateStr, instance);
+    setSelectedElementClass(selectedDates, instance);
     return { selectedDates, dateStr };
   },
 };
+
+function setSelectedElementClass(selectedDates, instance) {
+  const daysList = instance.days.children;
+  const daysArr = [...daysList];
+  const selectedDay = selectedDates[0].getDate();
+  const selectedEl = daysArr.find(day => day.textContent == selectedDay);
+  instance.selectedDateElem.classList.remove('selected');
+  selectedEl.classList.add('selected');
+}
 
 function setDateForSort(date) {
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
-  return `${year}${addLeadingZero(month+1)}${addLeadingZero(day)}`;
+  return `${year}${addLeadingZero(month + 1)}${addLeadingZero(day)}`;
+}
+
+function setDateForAriaLabel(date) {
+  const year = date.getFullYear();
+  const month = date.toLocaleString('en', { month: 'long' });
+  const day = date.getDate();
+  return `${month} ${day}, ${year}`;
 }
 
 function insertSelectedDate(selectedDates, dateStr, instance) {
@@ -67,6 +88,8 @@ function insertSelectedDate(selectedDates, dateStr, instance) {
   instance.input.value = dateStr;
   instance.input.dataset.date = setDateForSort(selectedDates[0]);
   instance.selectedDateElem.dateObj = selectedDates[0];
+  instance.selectedDateElem.ariaLabel = setDateForAriaLabel(selectedDates[0]);
+  instance.latestSelectedDateObj = selectedDates[0];
 }
 
 function addLeadingZero(value) {
