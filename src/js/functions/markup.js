@@ -4,9 +4,9 @@ import { mqHandler } from './mqHandler';
 import {weather} from '../weather';
 
 // ! тут баг⬇
-// import {totalPages, itemsPerPage} from '../news-page';
-let itemsPerPage = 8;
-let totalPages = 0;
+import {totalPages, itemsPerPage} from '../news-page';
+// let itemsPerPage = 8;
+// let totalPages = 0;
 // !тут баг⬆
 
 let srartIndex = 0;
