@@ -1,12 +1,14 @@
 import { refs } from './js/refs';
 import { favoritesInLocalStorage } from './js/localStorageFavorite';
 // console.log(favoritesInLocalStorage);
-
+if (
+  window.location.pathname === '/favorite.html'
+) { 
 function renderFavorites(element, constMarkup) {
   element.insertAdjacentHTML('beforeend', constMarkup);
 }
 
-function createMarkup({ title, img, description, source, category, date }) {
+function createMarkupFav({ title, img, description, source, category, date }) {
   return `<li class="gallery__item">
     <article class="gallery__article">
               <div class="gallery__thumb"> <p class="gallery__category">${category}</p>
@@ -31,11 +33,14 @@ function createMarkup({ title, img, description, source, category, date }) {
 }
 
 favoritesInLocalStorage.map(el => {
-  renderFavorites(refs.galleryList, createMarkup(el));
+  renderFavorites(refs.galleryList, createMarkupFav(el));
 });
 
 //!!!!Remove favorite
-refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
+if (window.location.pathname === '/favorite.html') {
+  refs.galleryList.addEventListener('click', onRemoveFavoriteBtn);
+}
+
 console.log(favoritesInLocalStorage);
 
 if (favoritesInLocalStorage === null || favoritesInLocalStorage === []) {
@@ -75,6 +80,7 @@ function onRemoveFavoriteBtn(e) {
   refs.galleryList.innerHTML = '';
 
   favoritesInLocalStorage.map(el => {
-    renderFavorites(refs.galleryList, createMarkup(el));
+    renderFavorites(refs.galleryList, createMarkupFav(el));
   });
+}
 }
