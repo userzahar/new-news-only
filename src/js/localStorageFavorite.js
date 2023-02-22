@@ -3,7 +3,7 @@ import onResize from './resize';
 
 let favoritesInLocalStorage = [];
 
-// refs.galleryList.addEventListener('click', onBtnFavoriteClick);
+refs.galleryList.addEventListener('click', onBtnFavoriteClick);
 
 function checkFavorite() {
   if (JSON.parse(localStorage.getItem('favoritesNews')) === null) {
