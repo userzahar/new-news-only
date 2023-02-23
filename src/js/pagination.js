@@ -19,20 +19,25 @@ export function initPagination(totalPages, pagBtnQty) {
   console.log(totalPages);
     pagination.on('beforeMove', event => {
       const currentPage = event.page;
-    //   if (searchType === 'popular') {
-    //     // console.log('pop', searchType);
-    //     clearMarkup();
-    //     createMarkup(markData, currentPage);
 
-    //  } 
-    //   if (searchType === 'word') {
-    //     // console.log('wor', searchType);
-    //     clearMarkup();
-    //     console.log(currentPage);
-    //     createMarkup(markData, currentPage);
-    //  } 
+      if (searchType === 'popular') {
+        // console.log('pop', searchType);
+      if (calendarDate === '') {
         clearMarkup();
         createMarkup(markData, currentPage);
+      } else {
+        clearMarkup();
+        createMarkup(filtredArr, currentPage);
+      }
+
+     } 
+      if (searchType === 'word') {
+        
+        // console.log('wor', searchType);
+        clearMarkup();
+        console.log(currentPage);
+        createMarkup(markData, currentPage);
+     }
   });
 }
 // export {initPagination};
