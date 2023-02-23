@@ -1,4 +1,5 @@
-import {createMarkup} from './functions/markup';
+
+import { createMarkup } from './functions/markup';
 import {clearMarkup} from './functions/markup';
 import {markData} from './functions/markup';
 import { normalizeSrc } from './functions/markup';
@@ -32,7 +33,7 @@ export function initPagination(totalPages, pagBtnQty) {
     //     clearMarkup();
     //     console.log(currentPage);
     //     createMarkup(markData, currentPage);
-    //  } 
+    //  }
       if (calendarDate === '') {
         clearMarkup();
         createMarkup(markData, currentPage);
