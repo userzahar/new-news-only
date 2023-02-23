@@ -1,32 +1,11 @@
 import { refs } from './refs';
-//import { initPagination } from './pagination';
+import { initPagination } from './pagination';
 import { createMarkup } from './functions/markup';
 import { clearMarkup } from './functions/markup';
-//import { mqHandler } from './functions/mqHandler';
-//import { fetchNews } from './functions/fetchNews';
-//import { itemsPerPage } from './functions/markup';
-//import { page } from './functions/markup';
-export {getSize}
-
- function getSize(scr) {
-  let scrView = scr;
-   if (scrView === 'mobile') {
-    renderForMobile();
-  }
-  if  (scrView === 'tablet') {
-    renderForTablet();
-  }
-  if (scrView === 'desktop') {
-    renderForDesktop();
-  }
-}
-
-if (
-  window.location.pathname === '/' ||
-  window.location.pathname === '/index.html'
-) 
-
-{
+import { mqHandler } from './functions/mqHandler';
+import { fetchNews } from './functions/fetchNews';
+import { itemsPerPage } from './functions/markup';
+import { page } from './functions/markup';
 
 let markData = {};
 
@@ -73,7 +52,6 @@ class CategoriesComponent {
     refs.btnCatagories.setAttribute('aria-expanded', true);
     refs.listOfCatagories.classList.add('is-open');
 
-
     const listner = () => {
       refs.btnCatagories.classList.remove('is-open');
       refs.btnCatagories.classList.remove('btn-color');
@@ -87,7 +65,6 @@ class CategoriesComponent {
   }
 
   renderForMobile() {
-
     refs.catagoriesItem.innerHTML = '';
 
     const markUp = this.#state.categories.reduce((markUp, category) => {
@@ -95,7 +72,6 @@ class CategoriesComponent {
         markUp +
         `<li class='catagories__item'><button data-name="${category.section}" class="catagory__btn">${category.section}</button></li>`
       );
-
     }, '');
 
     refs.othersBtnName.textContent = 'Categories';
@@ -182,7 +158,6 @@ class CategoriesComponent {
         }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
       sixth.section
     )}">${sixth.section}</button></li>
-
      `;
     const list = rest
       .map(
@@ -196,9 +171,7 @@ class CategoriesComponent {
     refs.listOfCatagories.innerHTML = list;
   }
 
-
   async selectedCatagory(evt) {
-
     if (evt.target.nodeName !== 'BUTTON') {
       return;
     }
@@ -236,7 +209,7 @@ if (
   categoriesComponent = new CategoriesComponent();
   fetchCatagories().then(categories => {
     categoriesComponent.setCategories(categories);
-    // mqHandler();
+    mqHandler();
   });
 }
 
@@ -297,6 +270,4 @@ function normalizePop(feed) {
   return markDataNew;
 }
 
-}
 export { categoriesComponent };
-
