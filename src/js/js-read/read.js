@@ -2,16 +2,14 @@
 import { readNews } from '../functions/saveToLocalStorage';
 import { mqHandler } from '../functions/mqHandler';
 import { refs } from '../refs';
-// import { initPagination } from '../pagination';
-// import { createMarkup } from '../functions/markup';
-// import { clearMarkup } from '../functions/markup';
-// import { markData } from '../functions/markup';
+
 import { ICON_HEART } from '../functions/markup';
 
 if (window.location.pathname === '/read.html') {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
+  // window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
 }
+//  refs.errorFind.classList.remove('notfind-part-hidden');
 
 let accordeon = {};
 const readingDates = readNews.map(singleArticle => singleArticle.readDate);
@@ -20,6 +18,7 @@ function onlyUnique(value, index, array) {
 }
 
 function createDiv(readNews) {
+  // refs.errorFind.classList.add('notfind-part-hidden');
   let unique = readingDates.filter(onlyUnique);
   const divMarkup = unique
     .map(el => {
@@ -30,6 +29,7 @@ function createDiv(readNews) {
   accordeon = document.querySelectorAll('.accord');
 
   createDailyList(readNews);
+  mqHandler();
 }
 function createDailyList(readNewsArray) {
     accordeon.forEach((singleDay, currentIndex) => {
