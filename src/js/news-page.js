@@ -58,6 +58,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 
   function onSearch(inputData, srcPage) {
     const promises = [];
+    // if ()
     for (let i = 1; i <= 5; i += 1) {
       const promise = fetchNews('/svc/search/v2/articlesearch.json', {
         q: inputData,
@@ -129,6 +130,23 @@ function onSubmit(e) {
   clearMarkup();
   onSearch(searchReq, srcPage);
 };
+
+
+function sortPop(date) {
+  calendarDate = '23.02.2023';
+  // clearMarkup();
+  markData.map(e => {
+    if (e.date === calendarDate) {
+      filtredArr.push(e);
+    }
+  });
+  totalPages = filtredArr.length / itemsPerPage;
+  clearMarkup();
+  createMarkup(filtredArr, srcPage);
+
+}
+// sortPop(calendarDate, markData);
+
 
 // export function fetchSizer(size) {
 
