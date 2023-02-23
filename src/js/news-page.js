@@ -55,6 +55,12 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   let totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
 
+  searchType = 'popular';
+  // console.log(data.results);
+
+  console.log(page);
+
+
   normalizePop(data.results);
 
   console.log(markData);
@@ -85,7 +91,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
         intermediateArray.push(...docs);
       })
       console.log(intermediateArray);
-      totalPages = intermediateArray.length / itemsPerPage;
+      totalPages = Math.ceil(intermediateArray.length / itemsPerPage);
       normalizeSrc(intermediateArray);
       createMarkup(markData, srcPage);
     });
