@@ -1,12 +1,13 @@
 import { refs } from './refs';
 
+
 export default function onResize(size, toRemove) {
   if (
     window.location.pathname === '/' ||
     window.location.pathname === '/index.html'
   ) {
     for (let sizeRemove of toRemove) {
-      refs.name.classList.remove(`catagories__btn-name-${sizeRemove}`);
+      refs.othersBtnName.classList.remove(`catagories__btn-name-${sizeRemove}`);
       refs.listOfCatagories.classList.remove(`catagories__list-${sizeRemove}`);
       refs.catagories.classList.remove(`catagories-${sizeRemove}`);
       refs.btnCatagories.classList.remove(`catagories__btn-${sizeRemove}`);
@@ -15,10 +16,10 @@ export default function onResize(size, toRemove) {
 
     refs.catagories.classList.add(`catagories-${size}`);
 
-    refs.name.classList.add(`catagories__btn-name-${size}`);
+    refs.othersBtnName.classList.add(`catagories__btn-name-${size}`);
 
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
-    
+
   }
 
   refs.galleryList.forEach(list => {
@@ -28,6 +29,13 @@ export default function onResize(size, toRemove) {
     list.classList.add(`gallery__list-${size}`);
   });
 
+
+  // if ( window.location.pathname === '/' ||
+  //   window.location.pathname === '/index.html') {
+
+
+
+  // }
 
   for (let sizeRemove of toRemove) {
     refs.logo.classList.remove(`logo-${sizeRemove}`);

@@ -18,3 +18,4 @@ import {onBtnFavoriteClick} from '../src/js/localStorageFavorite'
 refs.contentContainer.forEach(container => container.addEventListener('click', toLS));
 
 
+

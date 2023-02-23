@@ -15,8 +15,6 @@ export let itemsPerPage = 8;
 export let totalPages = 0;
 
 
-// const paginationContainer = document.getElementById('pagination');
-
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
@@ -25,9 +23,7 @@ const formRef = document.querySelector('.search-field');
 const inputRef = document.querySelector('#search-field__input');
 
 formRef.addEventListener('submit', onSubmit);
-
-
-// inputRef.addEventListener('input', createReq);
+inputRef.addEventListener('input', createReq);
 
 fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 }).then(data => {
@@ -41,7 +37,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
     itemsPerPage = 4;
   }
 
-  totalItems = data.results.length;
+  let totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
 
   normalizePop(data.results);
