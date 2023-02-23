@@ -47,7 +47,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   if (window.innerWidth < 768) {
     itemsPerPage = 4;
   }
-
+  let totalItems = null;
   totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
   searchType = 'popular';
