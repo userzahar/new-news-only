@@ -13,7 +13,7 @@ const load = key => {
     }
   };
   function localStorageCheck(position){
-        if (load !== true) {
+        if (load === !true) {
             fetchWeather(position)
         } 
         else if(Date.UTC() - load("weather today").data.current.last_updated_epoch > 86400000){
