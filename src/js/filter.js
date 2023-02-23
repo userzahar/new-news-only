@@ -26,7 +26,7 @@ if (
   window.location.pathname === '/index.html'
 ) 
 
-
+{
 
 let markData = {};
 
@@ -297,6 +297,6 @@ function normalizePop(feed) {
   return markDataNew;
 }
 
-
+}
 export { categoriesComponent };
 
