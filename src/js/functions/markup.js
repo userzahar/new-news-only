@@ -41,21 +41,21 @@ const galleryRef = document.querySelector('.gallery__list');
 
 
 function createMarkup(arr, page) {
-
   if (window.innerWidth >= 1280) {
-
     weatherPos = 2;
-    srartIndex = (page - 1) * itemsPerPage;
-    endIndex = srartIndex + itemsPerPage;
-  
+    if (searchType === 'popular') {
+      srartIndex = (page - 1) * itemsPerPage;
+      endIndex = srartIndex + itemsPerPage;
+    }
+    if (searchType === 'word') {}
+      srartIndex = (page - 1) * itemsPerPage;
+      endIndex = srartIndex + itemsPerPage;
   }
   if (window.innerWidth < 1280 && window.innerWidth >= 780) {
-
     weatherPos = 1;
     itemsPerPage = 7;
     srartIndex = (page - 1) * itemsPerPage;
     endIndex = srartIndex + itemsPerPage;
-  
   }
   if (window.innerWidth < 768) {
     weatherPos = 0;
@@ -64,23 +64,20 @@ function createMarkup(arr, page) {
     endIndex = srartIndex + itemsPerPage;
     pagBtnQty = 3;
   }
-
     initPagination(totalPages, pagBtnQty);
-  
   const markup = arr.map(el => {
-      
       return `<li class="gallery__item">
     <article class="gallery__article">
               <div class="gallery__thumb"> <p class="gallery__category">${el.category}</p>
                 <img class="gallery__img" src="${el.image}" alt="${el.alt}"/>
                  <button type="button" class="gallery__favorite__btn ">
-                         <span class="favorite__btn-span">Add to favorite 
+                         <span class="favorite__btn-span">Add to favorite
                            <svg width='16' height='16'><use href="${ICON_HEART}"></use>
                     </svg> </span>
                     <span class="favorite__btn-span remove-btn is-hidden">Remove from favorite
                                     <svg width='16' height='16'><use href="${ICON_HEART}"></use>
                     </svg></span>
-                          </button>         
+                          </button>
                     </div>
                     <h3 class="gallery__header">${el.title}</h3>
                     <p class="gallery__text">${el.descr}</p>
