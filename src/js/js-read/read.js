@@ -2,14 +2,11 @@
 import { readNews } from '../functions/saveToLocalStorage';
 import { mqHandler } from '../functions/mqHandler';
 import { refs } from '../refs';
-// import { initPagination } from '../pagination';
-// import { createMarkup } from '../functions/markup';
-// import { clearMarkup } from '../functions/markup';
-// import { markData } from '../functions/markup';
+
 import { ICON_HEART } from '../functions/markup';
 
 if (window.location.pathname === '/read.html') {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
+  // window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
 }
 //  refs.errorFind.classList.remove('notfind-part-hidden');
@@ -32,6 +29,7 @@ function createDiv(readNews) {
   accordeon = document.querySelectorAll('.accord');
 
   createDailyList(readNews);
+  mqHandler();
 }
 function createDailyList(readNewsArray) {
     accordeon.forEach((singleDay, currentIndex) => {

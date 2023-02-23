@@ -1,6 +1,5 @@
 import { refs } from './refs';
 
-
 export default function onResize(size, toRemove) {
   if (
     window.location.pathname === '/' ||
@@ -11,14 +10,15 @@ export default function onResize(size, toRemove) {
       refs.listOfCatagories.classList.remove(`catagories__list-${sizeRemove}`);
       refs.catagories.classList.remove(`catagories-${sizeRemove}`);
       refs.btnCatagories.classList.remove(`catagories__btn-${sizeRemove}`);
+      // refs.calendarText.classList.remove(`calendar__text-${sizeRemove}`);
+
     }
     refs.listOfCatagories.classList.add(`catagories__list-${size}`);
-
     refs.catagories.classList.add(`catagories-${size}`);
-
     refs.othersBtnName.classList.add(`catagories__btn-name-${size}`);
-
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
+
+    // refs.calendarText.classList.add(`calendar__text-${size}`);
 
   }
 
@@ -29,11 +29,8 @@ export default function onResize(size, toRemove) {
     list.classList.add(`gallery__list-${size}`);
   });
 
-
   // if ( window.location.pathname === '/' ||
   //   window.location.pathname === '/index.html') {
-
-
 
   // }
 
@@ -48,7 +45,7 @@ export default function onResize(size, toRemove) {
     }
     hCont.classList.add(`header-container-${size}`);
   });
-
+  
   refs.logo.classList.add(`logo-${size}`);
   refs.navBar.classList.add(`navbar-${size}`);
 
