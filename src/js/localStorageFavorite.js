@@ -1,5 +1,6 @@
 
-import refs from './refs';
+
+import { refs } from './refs';
 import onResize from './resize';
 
 let favoritesInLocalStorage = [];
@@ -15,6 +16,7 @@ favoriteGalleryList.addEventListener('click', onBtnFavoriteClick);
 checkFavorite();
 
 
+
 function checkFavorite() {
   if (JSON.parse(localStorage.getItem('favoritesNews')) === null) {
     favoritesInLocalStorage = [];
@@ -25,7 +27,9 @@ function checkFavorite() {
 }
 
 
+
 function onBtnFavoriteClick(e) {
+
 
   console.log('onBtnFavoriteClick', e.target.nodeName);
   const btn = e.target.closest(`.gallery__favorite__btn`);
@@ -33,11 +37,13 @@ function onBtnFavoriteClick(e) {
   const removeBtn = btn.childNodes[3];
   if (!btn) return;
 
+
   // console.log(addBtn);
   checkFavorite();
 
   // let title = btn.parentNode.parentNode.childNodes[3].textContent;
   // console.log(title);
+
 
   if (removeBtn.classList.contains('is-hidden')) {
     addBtn.classList.add('is-hidden');
@@ -76,8 +82,6 @@ function addToFavorite(btn) {
     JSON.stringify(favoritesInLocalStorage)
   );
 
-
-  console.log(favoritesInLocalStorage);
 }
 
 export { favoritesInLocalStorage, favoriteGalleryList };

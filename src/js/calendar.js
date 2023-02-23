@@ -4,6 +4,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { refs } from './refs';
 if ((window.location.pathname === '/') || (window.location.pathname === '/index.html')) {
 
+
   const options = {
     dateFormat: 'd/m/Y',
     maxDate: new Date(),
@@ -113,6 +114,7 @@ if ((window.location.pathname === '/') || (window.location.pathname === '/index.
   refs.datePickerWrap.addEventListener('click', () => {
     calendar.open();
   });
+
 }
 export { calendar };
 

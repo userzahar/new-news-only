@@ -13,6 +13,7 @@ if (window.location.pathname === '/favorite.html') {
     element.insertAdjacentHTML('beforeend', constMarkup);
   }
 
+
   function createMarkupFav({
     title,
     img,
@@ -55,9 +56,11 @@ if (window.location.pathname === '/favorite.html') {
 
   console.log(favoritesInLocalStorage);
 
+
   if (favoritesInLocalStorage === null || favoritesInLocalStorage === []) {
     console.log('error');
   }
+
 
   function onRemoveFavoriteBtn(e) {
     const removeBtn = e.target.closest(`.remove-favorite-btn`);
