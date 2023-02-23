@@ -15,8 +15,6 @@ export let itemsPerPage = 8;
 export let totalPages = 0;
 
 
-
-
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
@@ -39,7 +37,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
     itemsPerPage = 4;
   }
 
-  totalItems = data.results.length;
+  let totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
 
   normalizePop(data.results);
