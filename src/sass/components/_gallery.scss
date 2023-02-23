@@ -29,8 +29,8 @@
 .gallery__item {
   display: flex;
   flex-direction: column;
-  height: 675px;
-  max-width: 394px;
+  // height: 675px;
+  // max-width: 394px;
   border-radius: 4px;
 }
 
@@ -44,9 +44,12 @@
 
 
 .gallery__img {
-  height: 100%;
+object-fit: cover;
+width: 395px;
+height: 395px;
   border-radius: 4px;
   display: block;
+  object-fit: cover;
 }
 
 .gallery__header {
@@ -120,8 +123,15 @@
 .gallery__thumb {
   position: relative;
   margin-bottom: 20px;
-  height: 395px;
+  // height: 395px;
 }
+
+// .gallery__article{
+//       display: flex;
+//         flex-direction: column;
+//         height: 100%;
+//       }
+// }
 
 // .gallery__item-tablet:last-child {
 //   display: none;
