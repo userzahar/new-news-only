@@ -3,6 +3,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { refs } from './refs';
 if ((window.location.pathname === '/') || (window.location.pathname === '/index.html')) {
+
   const options = {
     dateFormat: 'd/m/Y',
     maxDate: new Date(),
@@ -60,6 +61,7 @@ if ((window.location.pathname === '/') || (window.location.pathname === '/index.
     },
   };
 
+
   function setSelectedElementClass(selectedDates, instance) {
     const daysList = instance.days.children;
     const daysArr = [...daysList];
@@ -99,6 +101,7 @@ if ((window.location.pathname === '/') || (window.location.pathname === '/index.
     return value;
   }
 
+
   function isDateSelect(date) {
     if (!date) {
       Notify.info('Please, select a Date');
@@ -112,3 +115,4 @@ if ((window.location.pathname === '/') || (window.location.pathname === '/index.
   });
 }
 export { calendar };
+
