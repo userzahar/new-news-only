@@ -1,41 +1,13 @@
-import { mqHandler } from './functions/mqHandler';
 import { refs } from './refs';
-
-import { fetchNews } from './functions/fetchNews';
+import { initPagination } from './pagination';
 import { createMarkup } from './functions/markup';
 import { clearMarkup } from './functions/markup';
-import { normalizeCat } from './functions/markup';
-import { markData } from './functions/markup';
-import { initPagination } from './pagination';
-// import { itemsPerPage } from './functions/markup';
+import { mqHandler } from './functions/mqHandler';
+import { fetchNews } from './functions/fetchNews';
+import { itemsPerPage } from './functions/markup';
 import { page } from './functions/markup';
-export let totalPages = 0;
-// let markData = {};
-//import { mqHandler } from './functions/mqHandler';
-export {getSize}
-
- function getSize(scr) {
-  let scrView = scr;
-   if (scrView === 'mobile') {
-    renderForMobile();
-  }
-  if  (scrView === 'tablet') {
-    renderForTablet();
-  }
-  if (scrView === 'desktop') {
-    renderForDesktop();
-  }
-}
-
-if (
-  window.location.pathname === '/' ||
-  window.location.pathname === '/index.html'
-) 
-
-{
 
 let markData = {};
-
 
 const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
 
@@ -80,7 +52,6 @@ class CategoriesComponent {
     refs.btnCatagories.setAttribute('aria-expanded', true);
     refs.listOfCatagories.classList.add('is-open');
 
-
     const listner = () => {
       refs.btnCatagories.classList.remove('is-open');
       refs.btnCatagories.classList.remove('btn-color');
@@ -94,7 +65,6 @@ class CategoriesComponent {
   }
 
   renderForMobile() {
-
     refs.catagoriesItem.innerHTML = '';
 
     const markUp = this.#state.categories.reduce((markUp, category) => {
@@ -102,7 +72,6 @@ class CategoriesComponent {
         markUp +
         `<li class='catagories__item'><button data-name="${category.section}" class="catagory__btn">${category.section}</button></li>`
       );
-
     }, '');
 
     refs.othersBtnName.textContent = 'Categories';
@@ -189,7 +158,6 @@ class CategoriesComponent {
         }" class="catagory__btn-tab ${this.addBtnColorIfIsSelected(
       sixth.section
     )}">${sixth.section}</button></li>
-
      `;
     const list = rest
       .map(
@@ -203,9 +171,7 @@ class CategoriesComponent {
     refs.listOfCatagories.innerHTML = list;
   }
 
-
   async selectedCatagory(evt) {
-
     if (evt.target.nodeName !== 'BUTTON') {
       return;
     }
@@ -215,43 +181,12 @@ class CategoriesComponent {
     this.#state.lastClickedFilterBtn = button;
 
     const encoded = encodeURIComponent(selectedCatagory);
-    let itemsPerPage = 8;
-    // if (window.innerWidth >= 1280) {
-    //   itemsPerPage = 8;
-    // }
-    if (window.innerWidth < 1280 && window.innerWidth >= 780) {
-      itemsPerPage = 7;
-    }
-    if (window.innerWidth < 768) {
-      itemsPerPage = 4;
-    }
 
-    let offset = 0;
-    const promises = [];
-    // const requests = [];
-    for (let i = 0; i < 3; i++) {
-      offset = i * 20; 
-      console.log('test',offset);
-      console.log('test',promises);
-      const result = await fetchNewsByCategory(encoded, apiKey, offset);
-      if (result.results === null) { // перевіряємо умову
-        break; // якщо умова виконується, перериваємо цикл
-      }
-      promises.push(result);
-  }
-  
-  const results = await Promise.all(promises);
-  
-  const combinedResults = results.reduce((accumulator, currentValue) => {
-    return [...accumulator, ...currentValue.results];
-  }, []);
-    console.log('test',combinedResults);
-    // const results = await fetchNewsByCategory(encoded, apiKey, offset);
-    totalPages = Math.ceil(combinedResults.length / itemsPerPage);
-    console.log(totalPages);
-    normalizeCat(combinedResults);
+    const results = await fetchNewsByCategory(encoded, apiKey);
+
+    normalizePop(results.results);
     clearMarkup();
-    createMarkup(markData, page);
+    createMarkup(markDataNew, 1);
   }
 
   addBtnColorIfIsSelected(dataName) {
@@ -274,12 +209,12 @@ if (
   categoriesComponent = new CategoriesComponent();
   fetchCatagories().then(categories => {
     categoriesComponent.setCategories(categories);
-    // mqHandler();
+    mqHandler();
   });
 }
 
-async function fetchNewsByCategory(section, apiKey, offset) {
-  const url = `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?&api-key=${apiKey}&offset=${offset}`;
+async function fetchNewsByCategory(section, apiKey) {
+  const url = `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?&api-key=${apiKey}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -291,8 +226,48 @@ async function fetchNewsByCategory(section, apiKey, offset) {
     throw new Error(`Failed to fetch data from ${url}`);
   }
 }
+function normalizePop(feed) {
+  const marks = feed.map(el => {
+    function checkoutDescr() {
+      if (el.abstract.length > 120) {
+        return el.abstract.slice(0, 119) + '...';
+      }
+      return el.abstract;
+    }
+    const descr = checkoutDescr();
+    const dateFormat = new Date(el.published_date);
+    const date = new Intl.DateTimeFormat().format(dateFormat);
+    function ckeckoutTit() {
+      if (el.title.length > 50) {
+        return el.title.slice(0, 49) + '...';
+      }
+      return el.title;
+    }
+    const title = ckeckoutTit();
 
+    const source = el.url;
+    function checkoutImg() {
+      if (el.multimedia === null) {
+        return 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg';
+      }
+      return el.multimedia[2].url;
+    }
+    const image = checkoutImg();
+    function checkoutAlt() {
+      if (el.multimedia === null) {
+        return 'Image is no avalible';
+      }
+      return el.multimedia[0].caption;
+    }
+    const alt = checkoutAlt();
+    const category = el.section;
 
+    return { descr, date, title, source, image, alt, category };
+  });
+
+  markDataNew = marks;
+
+  return markDataNew;
 }
-export { categoriesComponent };
 
+export { categoriesComponent };
