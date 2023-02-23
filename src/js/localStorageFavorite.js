@@ -1,5 +1,3 @@
-
-
 import { refs } from './refs';
 import onResize from './resize';
 
@@ -15,8 +13,6 @@ const favoriteGalleryList = document.querySelector('.gallery__list');
 favoriteGalleryList.addEventListener('click', onBtnFavoriteClick);
 checkFavorite();
 
-
-
 function checkFavorite() {
   if (JSON.parse(localStorage.getItem('favoritesNews')) === null) {
     favoritesInLocalStorage = [];
@@ -26,28 +22,23 @@ function checkFavorite() {
   favoritesInLocalStorage = JSON.parse(localStorage.getItem('favoritesNews'));
 }
 
-
-
 function onBtnFavoriteClick(e) {
-
-
   console.log('onBtnFavoriteClick', e.target.nodeName);
   const btn = e.target.closest(`.gallery__favorite__btn`);
   const addBtn = btn.childNodes[1];
   const removeBtn = btn.childNodes[3];
   if (!btn) return;
 
-
-  // console.log(addBtn);
+  console.log(removeBtn.childNodes);
   checkFavorite();
 
   // let title = btn.parentNode.parentNode.childNodes[3].textContent;
   // console.log(title);
 
-
   if (removeBtn.classList.contains('is-hidden')) {
     addBtn.classList.add('is-hidden');
     removeBtn.classList.remove('is-hidden');
+    removeBtn.childNodes[1].style.fill = '#4440f7';
     addToFavorite(btn);
     return;
   }
@@ -71,9 +62,9 @@ function addToFavorite(btn) {
         .value,
   };
 
-  // for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
-  //   if (favoritesInLocalStorage[i].title === favoriteData.title) return;
-  // }
+  for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
+    if (favoritesInLocalStorage[i].title === favoriteData.title) return;
+  }
 
   favoritesInLocalStorage.push(favoriteData);
 
@@ -81,8 +72,6 @@ function addToFavorite(btn) {
     'favoritesNews',
     JSON.stringify(favoritesInLocalStorage)
   );
-
 }
 
 export { favoritesInLocalStorage, favoriteGalleryList };
-

@@ -1,8 +1,14 @@
+import './js/functions/mqHandler';
+import './js/js-header/dark-mode';
+import './js/js-header/mobile-menu';
+
+import { ICON_HEART } from './js/functions/markup';
 import { refs } from './js/refs';
 import {
   favoritesInLocalStorage,
   favoriteGalleryList,
 } from './js/localStorageFavorite';
+
 // console.log(favoritesInLocalStorage);
 
 refs.errorFind.classList.remove('notfind-part-hidden');
@@ -12,7 +18,6 @@ if (window.location.pathname === '/favorite.html') {
     refs.errorFind.classList.add('notfind-part-hidden');
     element.insertAdjacentHTML('beforeend', constMarkup);
   }
-
 
   function createMarkupFav({
     title,
@@ -28,10 +33,10 @@ if (window.location.pathname === '/favorite.html') {
                 <img class="gallery__img" src="${img}" alt=""/>
                  <button type="button" class="gallery__favorite__btn ">
                          <span class="favorite__btn-span add-favorite-btn is-hidden">Add to favorite
-                           <svg width='16' height='16'><use href="}"></use>
+                           <svg width='16' height='16'><use href="${ICON_HEART}"></use>
                     </svg> </span>
                     <span class="favorite__btn-span remove-favorite-btn">Remove from favorite
-                                    <svg width='16' height='16'><use href=""></use>
+                                    <svg width='16' height='16' fill="#4440f7"><use href="${ICON_HEART}"></use>
                     </svg></span>
                           </button>
                     </div>
@@ -56,11 +61,9 @@ if (window.location.pathname === '/favorite.html') {
 
   console.log(favoritesInLocalStorage);
 
-
   if (favoritesInLocalStorage === null || favoritesInLocalStorage === []) {
     console.log('error');
   }
-
 
   function onRemoveFavoriteBtn(e) {
     const removeBtn = e.target.closest(`.remove-favorite-btn`);
