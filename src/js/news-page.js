@@ -64,8 +64,8 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 
   function onSearch(inputData, srcPage) {
     const promises = [];
+    calendarDate = '20230115';
     searchType = 'word';
-    // calendarDate = '20230115';
     console.log(calendarDate);
     if (calendarDate === '') {
       for (let i = 1; i <= 5; i += 1) {
