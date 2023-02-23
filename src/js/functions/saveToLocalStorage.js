@@ -1,12 +1,14 @@
+import { refs } from '../refs';
 
 let readNews;
 let fromLS = localStorage.getItem('read-news');
 if (fromLS) {
+  refs.errorFind.classList.remove('notfind-part-hidden')
   readNews = JSON.parse(fromLS);
-} else readNews = [];
+} else {readNews = [];
+  refs.errorFind.classList.add('notfind-part-hidden');}
+
 export { readNews };
-
-
 
 
 export function toLS(e) {

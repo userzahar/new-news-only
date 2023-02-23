@@ -12,6 +12,7 @@ if (window.location.pathname === '/read.html') {
   window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
 }
+//  refs.errorFind.classList.remove('notfind-part-hidden');
 
 let accordeon = {};
 const readingDates = readNews.map(singleArticle => singleArticle.readDate);
@@ -20,6 +21,7 @@ function onlyUnique(value, index, array) {
 }
 
 function createDiv(readNews) {
+  // refs.errorFind.classList.add('notfind-part-hidden');
   let unique = readingDates.filter(onlyUnique);
   const divMarkup = unique
     .map(el => {
