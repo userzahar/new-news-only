@@ -236,7 +236,7 @@ if (
   categoriesComponent = new CategoriesComponent();
   fetchCatagories().then(categories => {
     categoriesComponent.setCategories(categories);
-    mqHandler();
+    // mqHandler();
   });
 }
 
