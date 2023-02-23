@@ -1,3 +1,4 @@
+
 .wrap-filter {
   display: flex;
   align-items: baseline;
@@ -29,12 +30,20 @@
     }
   }
 }
+// .calendar__text-tablet,
+// .calendar__text-mobile {
+   
+//     display: none;
+  
+// }
+// .calendar__text-desktop{
+//     display: block;
+//     margin-right: 31px;
+//     font-size: 18px;
+//     font-weight: 700;
+//     line-height: 1.37;
+// }
 
-.calendar-tablet {
-  .calendar__text {
-    display: none;
-  }
-}
 
 .wrap__input {
   position: relative;
@@ -44,7 +53,7 @@
   border: 1px solid #111321;
   border-radius: 20px;
   padding: 0 20px;
-  
+
   &.active {
     background-color: #4440f7;
     color: white;
@@ -57,18 +66,13 @@
       opacity: 0.9;
     }
     .calendar__arrow {
-      fill: currentColor;
-      color: currentColor;
-      .calendar__arrow__icon-down {
-        fill: currentColor;
-        color: currentColor;
+      fill: white;
+    }
+    &.close {
+      .calendar__arrow{
+        fill: white;
+        translate: translate(0, -50%)rotate(90deg);
       }
-    }
-     .icon-up {
-      display: block;
-    }
-     .icon-down {
-      display: none;
     }
   }
   .calendar__icon {
@@ -76,13 +80,21 @@
     top: 50%;
     left: 12px;
     transform: translate(0, -50%);
-    fill: #4440f7;
+    fill: var(--accent-color);
   }
   .calendar__arrow {
     position: absolute;
     right: 12px;
     top: 50%;
-    transform: translate(0, -50%);   
+    transform: translate(0, -50%);
+    fill: var(--accent-color);
+
+    &.open{
+      transform: rotate(180deg)translateY(5px);
+    }
+      }
+
+
   }
   .date-picker {
     width: 100%;
@@ -112,14 +124,8 @@
       max-width: 152px;
     }
   }
-  .icon-up{
-    display: none;
-  }
 
-   .icon-down {
-      fill: #4440f7;
-    }
-}
+
 .numInputWrapper {
   position: unset !important;
 }
@@ -180,14 +186,15 @@
   background-color: #4440f7 !important;
 }
 
-.darkMode{
-.wrap__input{
-border: 1px solid white;
+.darkMode {
+  .wrap__input {
+    border: 1px solid white;
+  }
+  .date-picker::placeholder {
+    color: #f4f4f4;
+  }
+  .calendar__arrow {
+    fill: #f4f4f4;
+  }
 }
-.date-picker::placeholder{
-  color:  #F4F4F4;
-}
-.icon-down{
-  fill:#F4F4F4;
-}
-}
+

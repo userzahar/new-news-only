@@ -91,5 +91,10 @@
 
 .navbar-mobile__icon {
   fill: none;
-  stroke: #f4f4f4;
+  //stroke: #f4f4f4;
+}
+
+.open-mob-menu{
+  height: 100vh;
+  overflow-y: hidden;
 }

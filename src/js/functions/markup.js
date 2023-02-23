@@ -202,4 +202,3 @@ function createMarkup(arr, page) {
     }
     
   export { normalizeSrc };
-  

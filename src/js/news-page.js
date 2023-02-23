@@ -11,16 +11,15 @@ import { markData } from './functions/markup';
 import { page } from './functions/markup';
 
 // import { addToLocalStorate } from './js-read/read'
-
 let calendarDate = '';
 export { calendarDate };
-
+  
 export let itemsPerPage = 8;
 export let totalPages = 0;
+
 export let srcPage = 1;
 export let searchReq = '';
 export let searchType = null;
-export let filtredArr = [];
 export { onSearch };
 
 
@@ -48,19 +47,20 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   if (window.innerWidth < 768) {
     itemsPerPage = 4;
   }
-
+  let totalItems = null;
   totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
   searchType = 'popular';
   // console.log(searchType);
   normalizePop(data.results);
-  console.log(markData);
-  createMarkup(markData, page);
+ 
   refs.paginationContainer.hidden = false;
+  createMarkup(markData, page);
   
   // addToLocalStorate();
   // Do something with the data		
 })
+
 
   function onSearch(inputData, srcPage) {
     const promises = [];
@@ -99,17 +99,65 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
       })
       // console.log(intermediateArray);
       totalPages = intermediateArray.length / itemsPerPage;
+
+      refs.errorFind.classList.add('notfind-part-hidden');
+
+      if (intermediateArray.length === 0){
+         refs.errorFind.classList.remove('notfind-part-hidden');
+         refs.galleryContainer.innerHTML = "";
+       }
+
+     
       normalizeSrc(intermediateArray);
       console.log(markData);
       createMarkup(markData, srcPage);
     });
-   
-      refs.errorFind.classList.add('notfind-part-hidden');
 
+    // refs.errorFind.classList.add('notfind-part-hidden');
+
+      // fetchNews('/svc/search/v2/articlesearch.json', {
+
+
+      //     q: inputData,
+      //     page: srcPage,
+      //   }).then(data => {
+      //     totalItems = data.response.docs.length;
+      //     searchType = 'word';
+      //     console.log(searchType);
+      //     if (data.response.meta.hits > 1000) {
+      //       totalPages = 100;
+      //     } else {
+      //       totalPages = data.response.meta.hits;
+      //     }
+
+      
+      // console.log(totalPages);
+       refs.errorFind.classList.add('notfind-part-hidden');
+      // console.log(totalItems);
+      // if (data.response.docs.length === 0) {
+        
+      //   refs.paginationContainer.hidden = true;
+      //   refs.errorFind.classList.remove('notfind-part-hidden');
+      //   galleryСontainer.innerHTML = "";
+        
+      // }
+      // console.log(data.response.docs);
+   
+      // console.log(srcPage);
+      
+      
+      // });
     };
+
+// onSearch('ukraine');
+
+
 
 function createReq(e) {
   searchReq = e.target.value.trim();
+
+
+  // console.log(searchReq);
   }
   
 
@@ -118,6 +166,7 @@ function onSubmit(e) {
   clearMarkup();
   onSearch(searchReq, srcPage);
 };
+
 
 function sortPop(date) {
   calendarDate = '22.02.2023';
@@ -133,6 +182,7 @@ function sortPop(date) {
 
 }
 // sortPop(calendarDate, markData);
+
 
 // export function fetchSizer(size) {
 
