@@ -295,4 +295,3 @@ async function fetchNewsByCategory(section, apiKey, offset) {
 
 }
 export { categoriesComponent };
-
