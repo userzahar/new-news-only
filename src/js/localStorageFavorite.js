@@ -1,4 +1,6 @@
-import refs from './refs';
+
+import { refs } from './refs';
+
 import onResize from './resize';
 
 let favoritesInLocalStorage = [];
@@ -23,7 +25,6 @@ function checkFavorite() {
   favoritesInLocalStorage = JSON.parse(localStorage.getItem('favoritesNews'));
 }
 
-
 function onBtnFavoriteClick(e) {
 
   console.log('onBtnFavoriteClick', e.target.nodeName);
@@ -32,7 +33,9 @@ function onBtnFavoriteClick(e) {
   const removeBtn = btn.childNodes[3];
   if (!btn) return;
 
-  // console.log(addBtn);
+
+  console.log(removeBtn.childNodes);
+
   checkFavorite();
 
   // let title = btn.parentNode.parentNode.childNodes[3].textContent;
@@ -41,6 +44,7 @@ function onBtnFavoriteClick(e) {
   if (removeBtn.classList.contains('is-hidden')) {
     addBtn.classList.add('is-hidden');
     removeBtn.classList.remove('is-hidden');
+    removeBtn.childNodes[1].style.fill = '#4440f7';
     addToFavorite(btn);
     return;
   }
@@ -64,9 +68,9 @@ function addToFavorite(btn) {
         .value,
   };
 
-  // for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
-  //   if (favoritesInLocalStorage[i].title === favoriteData.title) return;
-  // }
+  for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
+    if (favoritesInLocalStorage[i].title === favoriteData.title) return;
+  }
 
   favoritesInLocalStorage.push(favoriteData);
 
@@ -75,8 +79,7 @@ function addToFavorite(btn) {
     JSON.stringify(favoritesInLocalStorage)
   );
 
-
-  console.log(favoritesInLocalStorage);
 }
 
 export { favoritesInLocalStorage, favoriteGalleryList };
+
