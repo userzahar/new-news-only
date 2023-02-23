@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { categoriesComponent } from './filter';
+
 export default function onResize(size, toRemove) {
   if (
     window.location.pathname === '/' ||
@@ -10,23 +10,16 @@ export default function onResize(size, toRemove) {
       refs.listOfCatagories.classList.remove(`catagories__list-${sizeRemove}`);
       refs.catagories.classList.remove(`catagories-${sizeRemove}`);
       refs.btnCatagories.classList.remove(`catagories__btn-${sizeRemove}`);
+      // refs.calendarText.classList.remove(`calendar__text-${sizeRemove}`);
+
     }
     refs.listOfCatagories.classList.add(`catagories__list-${size}`);
-
     refs.catagories.classList.add(`catagories-${size}`);
-
     refs.othersBtnName.classList.add(`catagories__btn-name-${size}`);
-
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
-    if (size === 'mobile') {
-      categoriesComponent?.renderForMobile();
-    }
-    if (size === 'tablet') {
-      categoriesComponent?.renderForTablet();
-    }
-    if (size === 'desktop') {
-      categoriesComponent?.renderForDesktop();
-    }
+
+    // refs.calendarText.classList.add(`calendar__text-${size}`);
+
   }
 
   refs.galleryList.forEach(list => {
@@ -35,6 +28,7 @@ export default function onResize(size, toRemove) {
     }
     list.classList.add(`gallery__list-${size}`);
   });
+
   // if ( window.location.pathname === '/' ||
   //   window.location.pathname === '/index.html') {
 
@@ -51,7 +45,7 @@ export default function onResize(size, toRemove) {
     }
     hCont.classList.add(`header-container-${size}`);
   });
-
+  
   refs.logo.classList.add(`logo-${size}`);
   refs.navBar.classList.add(`navbar-${size}`);
 

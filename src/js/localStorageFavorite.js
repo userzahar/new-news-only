@@ -11,8 +11,10 @@ const favoriteGalleryList = document.querySelector('.gallery__list');
 //    refs.galleryList.refs.galleryList.forEach(list => list.addEventListener('click', onBtnFavoriteClick))
 //    ;
 // }
+if (window.location.pathname === '/favorite.html') {
+   favoriteGalleryList.addEventListener('click', onBtnFavoriteClick);
+  }
 
-favoriteGalleryList.addEventListener('click', onBtnFavoriteClick);
 checkFavorite();
 
 
