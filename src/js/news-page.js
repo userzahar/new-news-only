@@ -62,28 +62,40 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 })
 
 
-function onSearch(inputData, srcPage) {
-  const promises = [];
-  for (let i = 1; i <= 5; i += 1) {
-    const promise = fetchNews('/svc/search/v2/articlesearch.json', {
-      q: inputData,
-      page: i.toString(),
-    }).then(data => {
-      return data.response.docs;
+  function onSearch(inputData, srcPage) {
+    const promises = [];
+    // if ()
+    for (let i = 1; i <= 5; i += 1) {
+      const promise = fetchNews('/svc/search/v2/articlesearch.json', {
+        q: inputData,
+        page: i.toString(),
+      }).then(data => {
+        return data.response.docs;
+      });
+      promises.push(promise);
+    };
+    Promise.all(promises).then(results => {
+      const intermediateArray = [];
+      results.forEach(docs => {
+        intermediateArray.push(...docs);
+      })
+      console.log(intermediateArray);
+      totalPages = intermediateArray.length / itemsPerPage;
+
+      refs.errorFind.classList.add('notfind-part-hidden');
+
+      if (intermediateArray.length === 0){
+         refs.errorFind.classList.remove('notfind-part-hidden');
+         refs.galleryContainer.innerHTML = "";
+       }
+
+     
+      normalizeSrc(intermediateArray);
+      createMarkup(markData, srcPage);
     });
-    promises.push(promise);
-  };
-  Promise.all(promises).then(results => {
-    const intermediateArray = [];
-    results.forEach(docs => {
-      intermediateArray.push(...docs);
-    })
-    console.log(intermediateArray);
-    totalPages = intermediateArray.length / itemsPerPage;
-    normalizeSrc(intermediateArray);
-    createMarkup(markData, srcPage);
-  });
-   
+
+    // refs.errorFind.classList.add('notfind-part-hidden');
+
       // fetchNews('/svc/search/v2/articlesearch.json', {
 
 
@@ -101,7 +113,7 @@ function onSearch(inputData, srcPage) {
 
       
       // console.log(totalPages);
-      refs.errorFind.classList.add('notfind-part-hidden');
+       refs.errorFind.classList.add('notfind-part-hidden');
       // console.log(totalItems);
       // if (data.response.docs.length === 0) {
         
