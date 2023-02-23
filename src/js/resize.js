@@ -22,13 +22,13 @@ export default function onResize(size, toRemove) {
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
 
     if (size === 'mobile') {
-      categoriesComponent?.renderForMobile();
+      categoriesComponent.renderForMobile();
     }
     if (size === 'tablet') {
-      categoriesComponent?.renderForTablet();
+      categoriesComponent.renderForTablet();
     }
     if (size === 'desktop') {
-      categoriesComponent?.renderForDesktop();
+      categoriesComponent.renderForDesktop();
     }
 
   }
