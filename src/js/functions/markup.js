@@ -1,5 +1,7 @@
 import {initPagination} from '../pagination'
 import {totalPages} from '../news-page';
+import {totalPages} from '../filter';
+
 import { mqHandler } from './mqHandler';
 import { searchType } from '../news-page';
 
@@ -203,3 +205,48 @@ function createMarkup(arr, page) {
     
   export { normalizeSrc };
   
+  function normalizeCat(feed) {
+    const marks = feed.map(el => {
+      function checkoutDescr() {
+        if (el.abstract.length > 120) {
+          return el.abstract.slice(0, 119) + '...';
+        }
+        return el.abstract;
+      }
+      const descr = checkoutDescr();
+      const dateFormat = new Date(el.published_date);
+      const date = new Intl.DateTimeFormat().format(dateFormat);
+      function ckeckoutTit() {
+        if (el.title.length > 50) {
+          return el.title.slice(0, 49) + '...';
+        }
+        return el.title;
+      }
+      const title = ckeckoutTit();
+  
+      const source = el.url;
+      function checkoutImg() {
+        if (el.multimedia === null) {
+          return 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg';
+        }
+        return el.multimedia[2].url;
+      }
+      const image = checkoutImg();
+      function checkoutAlt() {
+        if (el.multimedia === null) {
+          return 'Image is no avalible';
+        }
+        return el.multimedia[0].caption;
+      }
+      const alt = checkoutAlt();
+      const category = el.section;
+  
+      return { descr, date, title, source, image, alt, category };
+    });
+  
+    markData = marks;
+  
+    return markData;
+  }
+
+  export { normalizeCat };

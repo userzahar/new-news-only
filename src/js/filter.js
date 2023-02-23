@@ -1,13 +1,16 @@
+import { mqHandler } from './functions/mqHandler';
 import { refs } from './refs';
-import { initPagination } from './pagination';
+
+import { fetchNews } from './functions/fetchNews';
 import { createMarkup } from './functions/markup';
 import { clearMarkup } from './functions/markup';
-import { mqHandler } from './functions/mqHandler';
-import { fetchNews } from './functions/fetchNews';
-import { itemsPerPage } from './functions/markup';
+import { normalizeCat } from './functions/markup';
+import { markData } from './functions/markup';
+import { initPagination } from './pagination';
+// import { itemsPerPage } from './functions/markup';
 import { page } from './functions/markup';
-
-let markData = {};
+export let totalPages = 0;
+// let markData = {};
 
 const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
 
@@ -181,12 +184,43 @@ class CategoriesComponent {
     this.#state.lastClickedFilterBtn = button;
 
     const encoded = encodeURIComponent(selectedCatagory);
+    let itemsPerPage = 8;
+    // if (window.innerWidth >= 1280) {
+    //   itemsPerPage = 8;
+    // }
+    if (window.innerWidth < 1280 && window.innerWidth >= 780) {
+      itemsPerPage = 7;
+    }
+    if (window.innerWidth < 768) {
+      itemsPerPage = 4;
+    }
 
-    const results = await fetchNewsByCategory(encoded, apiKey);
-
-    normalizePop(results.results);
+    let offset = 0;
+    const promises = [];
+    // const requests = [];
+    for (let i = 0; i < 3; i++) {
+      offset = i * 20; 
+      console.log('test',offset);
+      console.log('test',promises);
+      const result = await fetchNewsByCategory(encoded, apiKey, offset);
+      if (result.results === null) { // перевіряємо умову
+        break; // якщо умова виконується, перериваємо цикл
+      }
+      promises.push(result);
+  }
+  
+  const results = await Promise.all(promises);
+  
+  const combinedResults = results.reduce((accumulator, currentValue) => {
+    return [...accumulator, ...currentValue.results];
+  }, []);
+    console.log('test',combinedResults);
+    // const results = await fetchNewsByCategory(encoded, apiKey, offset);
+    totalPages = Math.ceil(combinedResults.length / itemsPerPage);
+    console.log(totalPages);
+    normalizeCat(combinedResults);
     clearMarkup();
-    createMarkup(markDataNew, 1);
+    createMarkup(markData, page);
   }
 
   addBtnColorIfIsSelected(dataName) {
@@ -212,8 +246,8 @@ if (
   });
 }
 
-async function fetchNewsByCategory(section, apiKey) {
-  const url = `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?&api-key=${apiKey}`;
+async function fetchNewsByCategory(section, apiKey, offset) {
+  const url = `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?&api-key=${apiKey}&offset=${offset}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -225,48 +259,6 @@ async function fetchNewsByCategory(section, apiKey) {
     throw new Error(`Failed to fetch data from ${url}`);
   }
 }
-function normalizePop(feed) {
-  const marks = feed.map(el => {
-    function checkoutDescr() {
-      if (el.abstract.length > 120) {
-        return el.abstract.slice(0, 119) + '...';
-      }
-      return el.abstract;
-    }
-    const descr = checkoutDescr();
-    const dateFormat = new Date(el.published_date);
-    const date = new Intl.DateTimeFormat().format(dateFormat);
-    function ckeckoutTit() {
-      if (el.title.length > 50) {
-        return el.title.slice(0, 49) + '...';
-      }
-      return el.title;
-    }
-    const title = ckeckoutTit();
 
-    const source = el.url;
-    function checkoutImg() {
-      if (el.multimedia === null) {
-        return 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg';
-      }
-      return el.multimedia[2].url;
-    }
-    const image = checkoutImg();
-    function checkoutAlt() {
-      if (el.multimedia === null) {
-        return 'Image is no avalible';
-      }
-      return el.multimedia[0].caption;
-    }
-    const alt = checkoutAlt();
-    const category = el.section;
-
-    return { descr, date, title, source, image, alt, category };
-  });
-
-  markDataNew = marks;
-
-  return markDataNew;
-}
 
 export { categoriesComponent };
