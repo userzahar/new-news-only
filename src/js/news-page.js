@@ -20,6 +20,7 @@ export let totalPages = 0;
 export let srcPage = 1;
 export let searchReq = '';
 export let searchType = null;
+export let filtredArr = [];
 export { onSearch };
 
 
