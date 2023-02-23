@@ -64,8 +64,11 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 
   function onSearch(inputData, srcPage) {
     const promises = [];
-    // if ()
-    for (let i = 1; i <= 5; i += 1) {
+    searchType = 'word';
+    // calendarDate = '20230115';
+    console.log(calendarDate);
+    if (calendarDate === '') {
+      for (let i = 1; i <= 5; i += 1) {
       const promise = fetchNews('/svc/search/v2/articlesearch.json', {
         q: inputData,
         page: i.toString(),
@@ -73,15 +76,31 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
         return data.response.docs;
       });
       promises.push(promise);
-    };
+      };
+      
+    } else {
+      for (let i = 1; i <= 5; i += 1) {
+      const promise = fetchNews('/svc/search/v2/articlesearch.json', {
+        q: inputData,
+        page: i.toString(),
+        begin_date: calendarDate,
+        end_date: calendarDate,
+      }).then(data => {
+        return data.response.docs;
+      });
+      promises.push(promise);
+      };
+    }
+    
     Promise.all(promises).then(results => {
       const intermediateArray = [];
       results.forEach(docs => {
         intermediateArray.push(...docs);
       })
-      console.log(intermediateArray);
+      // console.log(intermediateArray);
       totalPages = intermediateArray.length / itemsPerPage;
       normalizeSrc(intermediateArray);
+      console.log(markData);
       createMarkup(markData, srcPage);
     });
    
@@ -101,7 +120,7 @@ function onSubmit(e) {
 };
 
 function sortPop(date) {
-  calendarDate = '23.02.2023';
+  calendarDate = '22.02.2023';
   // clearMarkup();
   markData.map(e => {
     if (e.date === calendarDate) {
