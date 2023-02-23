@@ -1,11 +1,11 @@
-import { toLS } from '../functions/saveToLocalStorage';
+// import { toLS } from '../functions/saveToLocalStorage';
 import { readNews } from '../functions/saveToLocalStorage';
 import { mqHandler } from '../functions/mqHandler';
 import { refs } from '../refs';
-import { initPagination } from '../pagination';
-import { createMarkup } from '../functions/markup';
-import { clearMarkup } from '../functions/markup';
-import { markData } from '../functions/markup';
+// import { initPagination } from '../pagination';
+// import { createMarkup } from '../functions/markup';
+// import { clearMarkup } from '../functions/markup';
+// import { markData } from '../functions/markup';
 import { ICON_HEART } from '../functions/markup';
 
 if (window.location.pathname === '/read.html') {

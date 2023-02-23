@@ -1,8 +1,6 @@
 import {initPagination} from '../pagination'
 import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
-import { searchType } from '../news-page';
-
 // import { itemsPerPage } from '../news-page';
 import {weather} from '../weather';
 let itemsPerPage = 8;
@@ -47,13 +45,8 @@ function createMarkup(arr, page) {
   if (window.innerWidth >= 1280) {
 
     weatherPos = 2;
-    if (searchType === 'popular') {
-      srartIndex = (page - 1) * itemsPerPage;
-      endIndex = srartIndex + itemsPerPage;
-    }
-    if (searchType === 'word') {}
-      srartIndex = (page - 1) * itemsPerPage;
-      endIndex = srartIndex + itemsPerPage;
+    srartIndex = (page - 1) * itemsPerPage;
+    endIndex = srartIndex + itemsPerPage;
   
   }
   if (window.innerWidth < 1280 && window.innerWidth >= 780) {
@@ -192,9 +185,8 @@ function createMarkup(arr, page) {
         }
         const image = checkoutImg();
         const alt = 'New`s image';
-        const category = el.section_name;
         // console.log(image);
-        return { descr, date, title, source, image, alt,  category};
+        return { descr, date, title, source, image, alt };
       });
       // console.log(marks);
       markData = marks;

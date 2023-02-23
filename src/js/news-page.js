@@ -9,7 +9,6 @@ import { normalizeSrc } from './functions/markup';
 import { markData } from './functions/markup';
 // import {itemsPerPage} from './functions/markup';
 import { page } from './functions/markup';
-
 // import { addToLocalStorate } from './js-read/read'
 
 let calendarDate = '';
@@ -17,6 +16,7 @@ export { calendarDate };
 
 export let itemsPerPage = 8;
 export let totalPages = 0;
+
 export let srcPage = 1;
 export let searchReq = '';
 export let searchType = null;
@@ -24,10 +24,12 @@ export let filtredArr = [];
 export { onSearch };
 
 
+
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
 ) {
+
   const formRef = document.querySelector('.search-field');
   const inputRef = document.querySelector('#search-field__input');
   const calendRef = document.querySelector('.date-picker');
@@ -36,6 +38,7 @@ if (
   inputRef.addEventListener('input', createReq);
   calendRef.addEventListener('click', sortPop);
 };
+
 
 fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 }).then(data => {
@@ -49,14 +52,17 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
     itemsPerPage = 4;
   }
 
-  totalItems = data.results.length;
+  let totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
-  searchType = 'popular';
-  // console.log(searchType);
+
   normalizePop(data.results);
+
   console.log(markData);
+
+   refs.paginationContainer.hidden = false;
+
   createMarkup(markData, page);
-  refs.paginationContainer.hidden = false;
+
   
   // addToLocalStorate();
   // Do something with the data		
@@ -134,3 +140,4 @@ function sortPop(date) {
 // };
 
 // const encoded = encodeURIComponent('crosswords & games'); //crosswords%20&%20games
+
