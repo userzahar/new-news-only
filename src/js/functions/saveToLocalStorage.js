@@ -6,11 +6,8 @@ if (fromLS) {
 } else readNews = [];
 export { readNews };
 
-
-
-
 export function toLS(e) {
-  console.log('lols', e.target.className);
+  // console.log('lols', e.target.className);
   if (e.target.className !== 'gallery__link') {
     return;
   }
