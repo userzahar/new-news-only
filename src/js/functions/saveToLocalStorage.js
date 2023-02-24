@@ -2,23 +2,19 @@ import { refs } from '../refs';
 
 let readNews;
 let fromLS = localStorage.getItem('read-news');
+
 if (fromLS) {
   refs.errorFind.classList.remove('notfind-part-hidden')
+  // refs.errorFind.classList.remove('notfind-part-hidden')
   readNews = JSON.parse(fromLS);
 
 } else {readNews = [];
   refs.errorFind.classList.add('notfind-part-hidden');}
+  // refs.errorFind.classList.add('notfind-part-hidden');
+}
 
 export { readNews };
 
-
-
-export function toLS(e) {
-  let readBtn = e.target.closest('.gallery__link');
-  // console.log(btn);
-  if (!readBtn) {
-    return;
-  }
 
   const readObj = {
     alt: e.target.parentNode.parentNode.childNodes[1].children[1].alt,

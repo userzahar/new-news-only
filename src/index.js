@@ -11,7 +11,8 @@ import { toLS } from './js/functions/saveToLocalStorage';
 import { calendar } from './js/calendar';
 
 import { refs } from './js/refs';
-import {onBtnFavoriteClick} from '../src/js/localStorageFavorite'
+import { onBtnFavoriteClick } from '../src/js/localStorageFavorite';
+// import 'super-simple-accordions/dist/css/accordions.min.css';
 
 
 

@@ -4,8 +4,10 @@ import { refs } from '../refs';
 
 import { ICON_HEART } from '../functions/markup';
 
+
+
 if (window.location.pathname === '/read.html') {
-  // window.addEventListener('DOMContentLoaded', event => mqHandler());
+  window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
   if (readNews.length === 0) {
     refs.readNewsContainer.classList.add('read__news__container__hidden');
@@ -14,7 +16,7 @@ if (window.location.pathname === '/read.html') {
 }
 //  refs.errorFind.classList.remove('notfind-part-hidden');
 
-let accordeon = {};
+
 const readingDates = readNews.map(singleArticle => singleArticle.readDate);
 function onlyUnique(value, index, array) {
   return readingDates.indexOf(value) === index;
@@ -25,16 +27,18 @@ function createDiv(readNews) {
   let unique = readingDates.filter(onlyUnique);
   const divMarkup = unique
     .map(el => {
-      return `
-      <div class = "accord dated=${el.toString()}">
-      <span class = 'title__date'>${el.toString()}</span>
-      <ul class = "gallery__list"></ul></div>`;
+
+      return `<div class = "accordion__container accord parent__box dated=${el.toString()}"><p class = "accordion__label accord__date">${el.toString()}</p><svg class="arrow__icon" width="15" height="9">
+  <use href="./images/sprite.svg#icon-arrow-up"></use>
+</svg><ul class = "accordion__content gallery__list read__gallery__list"></ul></div>`;
+
     })
     .join('');
 
   refs.readNewsContainer.insertAdjacentHTML('beforeend', divMarkup);
   accordeon = document.querySelectorAll('.accord');
   createDailyList(readNews);
+  // createMarkupElems();
   mqHandler();
 }
 function createDailyList(readNewsArray) {
