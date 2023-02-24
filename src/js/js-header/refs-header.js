@@ -6,6 +6,8 @@ const themeContainer = document.querySelector('.theme');
 const seachBtn = document.querySelector('.search-field__btn');
 const loader = document.querySelector('.news-loader__container.container');
 
+const body = document.querySelector("body");
+
 export {
   newsList,
   mobileMenu,
@@ -14,4 +16,5 @@ export {
   themeContainer,
   seachBtn,
   loader,
+  body,
 };
