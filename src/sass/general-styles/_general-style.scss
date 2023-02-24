@@ -87,3 +87,6 @@ button {
 svg {
   fill: currentColor;
 }
+main {
+  min-height: calc(100vh - 285px);
+}
