@@ -1,7 +1,8 @@
 
-
 import { refs } from './refs';
+
 import onResize from './resize';
+
 
 let favoritesInLocalStorage = [];
 
@@ -11,12 +12,11 @@ const favoriteGalleryList = document.querySelector('.gallery__list');
 //    refs.galleryList.refs.galleryList.forEach(list => list.addEventListener('click', onBtnFavoriteClick))
 //    ;
 // }
-if (window.location.pathname === '/favorite.html') {
+// if (window.location.pathname === '/favorite.html') {
    favoriteGalleryList.addEventListener('click', onBtnFavoriteClick);
-  }
+  // }
 
 checkFavorite();
-
 
 
 function checkFavorite() {
@@ -28,10 +28,7 @@ function checkFavorite() {
   favoritesInLocalStorage = JSON.parse(localStorage.getItem('favoritesNews'));
 }
 
-
-
 function onBtnFavoriteClick(e) {
-
 
   console.log('onBtnFavoriteClick', e.target.nodeName);
   const btn = e.target.closest(`.gallery__favorite__btn`);
@@ -40,16 +37,17 @@ function onBtnFavoriteClick(e) {
   if (!btn) return;
 
 
-  // console.log(addBtn);
+  console.log(removeBtn.childNodes);
+
   checkFavorite();
 
   // let title = btn.parentNode.parentNode.childNodes[3].textContent;
   // console.log(title);
 
-
   if (removeBtn.classList.contains('is-hidden')) {
     addBtn.classList.add('is-hidden');
     removeBtn.classList.remove('is-hidden');
+    removeBtn.childNodes[1].style.fill = '#4440f7';
     addToFavorite(btn);
     return;
   }
@@ -73,9 +71,9 @@ function addToFavorite(btn) {
         .value,
   };
 
-  // for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
-  //   if (favoritesInLocalStorage[i].title === favoriteData.title) return;
-  // }
+  for (let i = 0; i < favoritesInLocalStorage.length; i += 1) {
+    if (favoritesInLocalStorage[i].title === favoriteData.title) return;
+  }
 
   favoritesInLocalStorage.push(favoriteData);
 

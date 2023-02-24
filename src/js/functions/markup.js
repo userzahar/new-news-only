@@ -1,6 +1,8 @@
 import {initPagination} from '../pagination'
 import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
+import { searchType } from '../news-page';
+
 // import { itemsPerPage } from '../news-page';
 import {weather} from '../weather';
 let itemsPerPage = 8;
@@ -16,7 +18,7 @@ let markData = {};
 export {markData};
 const paginationContainer = document.getElementById('pagination');
 const emptyCard = `<li class="gallery__item">${weather}</li>`;
-export const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
+export const ICON_HEART = '/new-news-only/sprite.50c1db32.svg#icon-heart';
 const galleryRef = document.querySelector('.gallery__list');
 
 
@@ -41,12 +43,16 @@ const galleryRef = document.querySelector('.gallery__list');
 
 
 function createMarkup(arr, page) {
-
   if (window.innerWidth >= 1280) {
 
     weatherPos = 2;
-    srartIndex = (page - 1) * itemsPerPage;
-    endIndex = srartIndex + itemsPerPage;
+    if (searchType === 'popular') {
+      srartIndex = (page - 1) * itemsPerPage;
+      endIndex = srartIndex + itemsPerPage;
+    }
+    if (searchType === 'word') {}
+      srartIndex = (page - 1) * itemsPerPage;
+      endIndex = srartIndex + itemsPerPage;
   
   }
   if (window.innerWidth < 1280 && window.innerWidth >= 780) {
@@ -185,8 +191,9 @@ function createMarkup(arr, page) {
         }
         const image = checkoutImg();
         const alt = 'New`s image';
+        const category = el.section_name;
         // console.log(image);
-        return { descr, date, title, source, image, alt };
+        return { descr, date, title, source, image, alt,  category};
       });
       // console.log(marks);
       markData = marks;
@@ -194,4 +201,3 @@ function createMarkup(arr, page) {
     }
     
   export { normalizeSrc };
-  

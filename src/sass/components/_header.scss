@@ -141,7 +141,7 @@ body.darkMode {
 
   &--current {
     padding-bottom: 8px;
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-left: 6px;
     padding-right: 6px;
 
@@ -153,6 +153,10 @@ body.darkMode {
   &:hover,
   &:focus {
     color: var(--accent-color);
+  }
+
+  &:active {
+    border-bottom: 1px solid var(--accent-color);
   }
 }
 
@@ -336,20 +340,20 @@ body.darkMode {
   transition: 0.4s;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   background-color: var(--white-color);
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--accent-color);
   border: 1px solid var(--white-color);
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px var(--accent-color);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(20px);

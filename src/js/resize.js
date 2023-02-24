@@ -17,7 +17,9 @@ export default function onResize(size, toRemove) {
     refs.catagories.classList.add(`catagories-${size}`);
     refs.othersBtnName.classList.add(`catagories__btn-name-${size}`);
     refs.btnCatagories.classList.add(`catagories__btn-${size}`);
+
     // refs.calendarText.classList.add(`calendar__text-${size}`);
+
   }
 
   refs.galleryList.forEach(list => {

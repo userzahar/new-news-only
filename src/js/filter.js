@@ -1,6 +1,6 @@
-
 import CategoriesComponent from "./functions/categoriesComponent";
 import refs from "../js/refs";
+
 import { initPagination } from './pagination';
 import { createMarkup } from './functions/markup';
 import { clearMarkup } from './functions/markup';
@@ -8,6 +8,7 @@ import { mqHandler } from './functions/mqHandler';
 import { fetchNews } from './functions/fetchNews';
 import { itemsPerPage } from './functions/markup';
 import { page } from './functions/markup';
+
 import { normalizePop } from "./functions/markup";
 export {getSize}
 //  let categoriesComponent = null;
@@ -39,7 +40,6 @@ if (
 }
 
 
-
 let f = {};
 
 const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
@@ -56,6 +56,7 @@ const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
 
 
 export async function fetchNewsByCategory(section, apiKey) {
+
   const url = `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?&api-key=${apiKey}`;
   try {
     const response = await fetch(url);
@@ -113,6 +114,6 @@ export function normalizeData(feed) {
   return markDataNew;
 }
 
-
 export { categoriesComponent };
+
 
