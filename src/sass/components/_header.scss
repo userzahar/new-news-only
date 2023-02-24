@@ -141,7 +141,7 @@ body.darkMode {
 
   &--current {
     padding-bottom: 8px;
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-left: 6px;
     padding-right: 6px;
 
@@ -153,6 +153,10 @@ body.darkMode {
   &:hover,
   &:focus {
     color: var(--accent-color);
+  }
+
+  &:active {
+    border-bottom: 1px solid var(--accent-color);
   }
 }
 
