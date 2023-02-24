@@ -13,7 +13,7 @@ import { refs } from './js/refs';
 import {onBtnFavoriteClick} from '../src/js/localStorageFavorite'
 
 
-('REF', refs.favoritesContainer)
+('REF', refs.favoritesContainer);
 
 refs.contentContainer.forEach(container => container.addEventListener('click', toLS));
 
