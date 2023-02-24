@@ -6,12 +6,8 @@ if (fromLS) {
 } else readNews = [];
 export { readNews };
 
-
-
-
 export function toLS(e) {
-  console.log('lols', e.target.className);
-  if (e.target.className !== 'gallery__link') {
+    if (e.target.className !== 'gallery__link') {
     return;
   }
   const readObj = {
@@ -23,10 +19,8 @@ export function toLS(e) {
     readDate: getUserTime(),
   };
   
-  console.log('readObj', readObj);
   checkIfSaved(readObj);
   readNews.push(readObj);
-  console.log('readNews after push', readNews);
   const LSReadNewsJSON = JSON.stringify(readNews);
 
   localStorage.setItem('read-news', LSReadNewsJSON);

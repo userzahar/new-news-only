@@ -1,16 +1,15 @@
-// import { toLS } from '../functions/saveToLocalStorage';
 import { readNews } from '../functions/saveToLocalStorage';
 import { mqHandler } from '../functions/mqHandler';
 import { refs } from '../refs';
-// import { initPagination } from '../pagination';
-// import { createMarkup } from '../functions/markup';
-// import { clearMarkup } from '../functions/markup';
-// import { markData } from '../functions/markup';
 import { ICON_HEART } from '../functions/markup';
 
 if (window.location.pathname === '/read.html') {
   window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
+  if (readNews.length === 0) {
+    refs.readNewsContainer.classList.add('read__news__container__hidden');
+    refs.errorFind.classList.remove('notfind-part-hidden');
+  }
 }
 
 let accordeon = {};
@@ -23,22 +22,22 @@ function createDiv(readNews) {
   let unique = readingDates.filter(onlyUnique);
   const divMarkup = unique
     .map(el => {
-      return `<div class = "accord dated=${el.toString()}"><p>${el.toString()}</p><ul class = "gallery__list"></ul></div>`;
+      return `
+      <div class = "accord dated=${el.toString()}">
+      <span class = 'title__date'>${el.toString()}</span>
+      <ul class = "gallery__list"></ul></div>`;
     })
     .join('');
+
   refs.readNewsContainer.insertAdjacentHTML('beforeend', divMarkup);
   accordeon = document.querySelectorAll('.accord');
-
   createDailyList(readNews);
 }
 function createDailyList(readNewsArray) {
-    accordeon.forEach((singleDay, currentIndex) => {
-    
+  accordeon.forEach((singleDay, currentIndex) => {
     const dayMarkup = readNewsArray
       .map(el => {
-       
-          if (singleDay.innerText === el.readDate) {
-           
+        if (singleDay.innerText === el.readDate) {
           return `<li class="gallery__item">
     <article class="gallery__article">
               <div class="gallery__thumb"> 
@@ -62,22 +61,38 @@ function createDailyList(readNewsArray) {
              </li>`;
         }
       })
-            .join('');
-        accordeon[currentIndex].lastElementChild.insertAdjacentHTML('beforeend', dayMarkup)
-    } 
+      .join('');
+    accordeon[currentIndex].lastElementChild.insertAdjacentHTML(
+      'beforeend',
+      dayMarkup
     );
-    
+  });
 }
- 
+
 function checks(el) {
-    for (let i = 0; i < el; i++) {
-    let childCounter = refs.readNewsContainer.children[i].children[1].childElementCount
-        if (childCounter < 3) {
-            lessArr = refs.readNewsContainer.children[i].children[1].children;
-            console.log('lessArr', lessArr)
-            for (const el of lessArr) {
-                el.classList.add('less3')
-            }
-        }
+  for (let i = 0; i < el; i++) {
+    console.log(
+      refs.readNewsContainer.children[i].children[1].childElementCount
+    );
+    let childCounter =
+      refs.readNewsContainer.children[i].children[1].childElementCount;
+    if (childCounter < 3) {
+      lessArr = refs.readNewsContainer.children[i].children[1].children;
+      console.log('lessArr', lessArr);
+      for (const el of lessArr) {
+        el.classList.add('less3');
+      }
     }
+  }
+}
+
+if (window.location.pathname === '/read.html') {
+  refs.readNewsContainer.addEventListener('click', openNewsGallery);
+  function openNewsGallery(event) {
+    if (event.target.nodeName !== 'SPAN') {
+      return;
+    }
+    event.target.classList.toggle('title__date__rotate');
+    event.target.nextElementSibling.classList.toggle('gallery__list__open');
+  }
 }
