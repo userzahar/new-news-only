@@ -2,6 +2,7 @@ import {initPagination} from '../pagination'
 import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
 import { searchType } from '../news-page';
+import { weather } from '../weather';
 
 // import { itemsPerPage } from '../news-page';
 import {weather} from '../weather';
@@ -99,6 +100,7 @@ function createMarkup(arr, page) {
     });
     const pageMarkup = markup.slice(srartIndex, endIndex);
     // console.log(pageMarkup);
+    const emptyCard = `<li class="gallery__item">${weather}</li>`;
     pageMarkup.splice(weatherPos, 0, emptyCard);
     const finishedMkp = pageMarkup.join('');
     // console.log(finishedMkp);

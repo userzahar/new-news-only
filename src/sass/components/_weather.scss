@@ -10,7 +10,6 @@
     border-radius: 4px;
 }
 
-
 .weather_country {
     display: inline-block;
     margin-left: 13px;
@@ -100,6 +99,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 18px;
+    text-align: center;
+    padding-top: 8px;
 }
 
 .main {
@@ -124,13 +125,12 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    // background-image: url(/src/images/Sun.png);
-    // background-repeat: no-repeat;
-    // background-size: contain;
-    // border-radius: 50%;
+    background-image: url(/src/images/cloud-removebg-preview.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
-.weather_date{
+.weather_date {
     color: #fff;
     font-family: 'Roboto';
     font-weight: 400;
@@ -143,26 +143,31 @@
     margin-left: auto;
     margin-right: auto;
 }
-@media (min-width: 768px){
-    .weather{
+
+@media (min-width: 768px) {
+    .weather {
         width: 353px;
         height: 675px;
         padding: 40px 32px 60px;
     }
-    .weather_degree{
+
+    .weather_degree {
         font-size: 64px;
         line-height: 1.171;
     }
-    .weather_wrap{
+
+    .weather_wrap {
         margin-left: 0;
     }
-    .weather_character{
+
+    .weather_character {
         font-size: 36px;
         line-height: 1.166;
         margin-bottom: 0;
         height: 42px;
     }
-    .weather_location{
+
+    .weather_location {
         width: 177px;
         height: 42px;
         font-size: 20px;
@@ -170,18 +175,21 @@
         background-size: 25px;
         background-position: 0px 8px;
     }
-    .weather_image{
+
+    .weather_image {
         width: 165px;
         height: 156px;
         margin-top: 91px;
     }
-    .weather_date{
+
+    .weather_date {
         font-size: 36px;
         line-height: 1.16;
         margin-top: 90px;
         margin-bottom: 28px;
     }
-    .weather_week{
+
+    .weather_week {
         font-size: 20px;
         line-height: 1.15;
         width: 177px;
@@ -189,26 +197,32 @@
         border-radius: 10px;
     }
 }
-@media (min-width: 1280px){
-    .weather{
+
+@media (min-width: 1280px) {
+    .weather {
         width: 395px;
         height: 675px;
         padding: 40px 53px 60px;
     }
-    .weather_degree{
+
+    .weather_degree {
         font-size: 64px;
         line-height: 1.171;
     }
-    .weather_degree::after{
+
+    .weather_degree::after {
         height: 85px;
     }
-    .weather_wrap{
+
+    .weather_wrap {
         margin-left: 0;
     }
-    .weather_character{
+
+    .weather_character {
         margin-left: 7px;
     }
-    .weather_location{
+
+    .weather_location {
         width: 177px;
         height: 42px;
         font-size: 20px;
