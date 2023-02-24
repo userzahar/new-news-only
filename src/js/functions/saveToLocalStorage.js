@@ -32,7 +32,7 @@ export { readNews };
   const LSReadNewsJSON = JSON.stringify(readNews);
 
   localStorage.setItem('read-news', LSReadNewsJSON);
-}
+
 function getUserTime(t = new Date()) {
   let Y = t.getFullYear();
   let M = addLeadingZero(t.getMonth() + 1);
