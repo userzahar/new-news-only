@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
     <defs>
+        <symbol id="icon-arrow-up" viewBox="0 0 53 32">
+<path d="M6.267 0l-6.267 6.089 26.667 25.911 26.667-25.911-6.267-6.089-20.4 19.779-20.4-19.779z"></path>
+</symbol>
         <symbol id="icon-menu" viewBox="0 0 32 32">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" d="M4 16h24M4 8h24M4 24h24" />
         </symbol>
@@ -71,6 +74,7 @@
         <symbol id="icon-right-1" viewBox="0 0 32 32">
 <path fill="none" stroke="#f4f4f4" style="stroke: var(--color1, #f4f4f4)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M12 24l8-8-8-8"></path>
 </symbol>
+
     </defs>
 </svg>
 
