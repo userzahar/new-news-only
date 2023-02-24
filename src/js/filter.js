@@ -1,11 +1,11 @@
 import { refs } from './refs';
-//import { initPagination } from './pagination';
-//import { createMarkup } from './functions/markup';
-//import { clearMarkup } from './functions/markup';
-//import { mqHandler } from './functions/mqHandler';
-//import { fetchNews } from './functions/fetchNews';
-//import { itemsPerPage } from './functions/markup';
-//import { page } from './functions/markup';
+import { initPagination } from './pagination';
+import { createMarkup } from './functions/markup';
+import { clearMarkup } from './functions/markup';
+import { mqHandler } from './functions/mqHandler';
+import { fetchNews } from './functions/fetchNews';
+import { itemsPerPage } from './functions/markup';
+import { page } from './functions/markup';
 export {getSize}
 
  function getSize(scr) {
