@@ -1,16 +1,18 @@
 import { readNews } from '../functions/saveToLocalStorage';
 import { mqHandler } from '../functions/mqHandler';
 import { refs } from '../refs';
+
 import { ICON_HEART } from '../functions/markup';
 
 if (window.location.pathname === '/read.html') {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
+  // window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
   if (readNews.length === 0) {
     refs.readNewsContainer.classList.add('read__news__container__hidden');
     refs.errorFind.classList.remove('notfind-part-hidden');
   }
 }
+//  refs.errorFind.classList.remove('notfind-part-hidden');
 
 let accordeon = {};
 const readingDates = readNews.map(singleArticle => singleArticle.readDate);
@@ -19,6 +21,7 @@ function onlyUnique(value, index, array) {
 }
 
 function createDiv(readNews) {
+  // refs.errorFind.classList.add('notfind-part-hidden');
   let unique = readingDates.filter(onlyUnique);
   const divMarkup = unique
     .map(el => {
@@ -32,6 +35,7 @@ function createDiv(readNews) {
   refs.readNewsContainer.insertAdjacentHTML('beforeend', divMarkup);
   accordeon = document.querySelectorAll('.accord');
   createDailyList(readNews);
+  mqHandler();
 }
 function createDailyList(readNewsArray) {
   accordeon.forEach((singleDay, currentIndex) => {
