@@ -1,6 +1,10 @@
-import './js/functions/mqHandler';
+// import './js/functions/mqHandler';
+import { mqHandler } from './js/functions/mqHandler';
 import './js/js-header/dark-mode';
 import './js/js-header/mobile-menu';
+import './js/js-header/nav-current';
+
+window.addEventListener('DOMContentLoaded', event => mqHandler());
 
 // import { ICON_HEART } from './js/functions/markup';
 const iconHeart = '/new-news-only/sprite.50c1db32.svg#icon-heart';
@@ -37,7 +41,7 @@ if (window.location.pathname === '/favorite.html') {
                            <svg width='16' height='16'><use href="${iconHeart}"></use>
                     </svg> </span>
                     <span class="favorite__btn-span remove-favorite-btn">Remove from favorite
-                                    <svg width='16' height='16' fill="#4440f7"><use href="${ICON_HEART}"></use>
+                                    <svg width='16' height='16' fill="#4440f7"><use href=""></use>
                     </svg></span>
                           </button>
                     </div>
