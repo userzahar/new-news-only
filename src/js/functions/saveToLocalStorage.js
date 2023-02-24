@@ -2,18 +2,19 @@ import { refs } from '../refs';
 
 let readNews;
 let fromLS = localStorage.getItem('read-news');
-
 if (fromLS) {
-  // refs.errorFind.classList.remove('notfind-part-hidden')
   readNews = JSON.parse(fromLS);
-
-} else {readNews = [];
-
-
-  // refs.errorFind.classList.add('notfind-part-hidden');
-}
-
+} else readNews = [];
 export { readNews };
+
+
+
+
+export function toLS(e) {
+  console.log('lols', e.target.className);
+  if (e.target.className !== 'gallery__link') {
+    return;
+  }
 
 
   const readObj = {
