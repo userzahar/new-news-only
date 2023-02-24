@@ -18,11 +18,11 @@ if (
   window.addEventListener('DOMContentLoaded', event => mqHandler());
 }
 if (
-  (window.location.pathname === '/') ||
-  (window.location.pathname === '/index.html')
+  window.location.pathname === '/' ||
+  window.location.pathname === '/index.html'
 ) {
-  
 }
 
-
-refs.contentContainer.forEach(container => container.addEventListener('click', toLS));
+refs.contentContainer.forEach(container =>
+  container.addEventListener('click', toLS)
+);
