@@ -2,9 +2,9 @@ function underlineCurrentPage() {
   let currentPageIsFound = false;
 
   const navLinks = document.querySelectorAll('.navbar__link');
-  console.log(navLinks);
+  // console.log(navLinks);
   const pageURL = document.URL;
-  console.log(pageURL);
+  // console.log(pageURL);
 
   navLinks.forEach(link => {
     const isCurrentPage = pageURL.includes(link.pathname);

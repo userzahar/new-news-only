@@ -17,7 +17,7 @@ export function initPagination(totalPages, pagBtnQty) {
     itemsPerPage: 1,
     visiblePages: pagBtnQty,
   });
-  console.log(totalPages);
+  // console.log(totalPages);
     pagination.on('beforeMove', event => {
       const currentPage = event.page;
 
