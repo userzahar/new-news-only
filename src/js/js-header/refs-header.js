@@ -5,7 +5,9 @@ const closeMenuBtn = document.querySelector('.js-close-menu');
 const themeContainer = document.querySelector('.theme');
 const seachBtn = document.querySelector('.search-field__btn');
 const loader = document.querySelector('.news-loader__container.container');
+
 const body = document.querySelector("body");
+
 export {
   newsList,
   mobileMenu,

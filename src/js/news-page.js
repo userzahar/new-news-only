@@ -55,7 +55,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   // console.log(searchType);
   normalizePop(data.results);
  
-  refs.paginationContainer.hidden = false;
+  // refs.paginationContainer.hidden = false;
   createMarkup(markData, page);
   
   // addToLocalStorate();
