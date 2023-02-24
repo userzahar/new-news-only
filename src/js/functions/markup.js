@@ -43,7 +43,6 @@ const galleryRef = document.querySelector('.gallery__list');
 
 
 function createMarkup(arr, page) {
-
   if (window.innerWidth >= 1280) {
 
     weatherPos = 2;
