@@ -11,7 +11,7 @@ export { readNews };
 
 
 export function toLS(e) {
-  console.log('lols', e.target.className);
+  // console.log('lols', e.target.className);
   if (e.target.className !== 'gallery__link') {
     return;
   }
@@ -26,13 +26,14 @@ export function toLS(e) {
     readDate: getUserTime(),
   };
 
-  console.log('readObj', readObj);
+  // console.log('readObj', readObj);
   checkIfSaved(readObj);
   readNews.push(readObj);
-  console.log('readNews after push', readNews);
+  // console.log('readNews after push', readNews);
   const LSReadNewsJSON = JSON.stringify(readNews);
 
   localStorage.setItem('read-news', LSReadNewsJSON);
+
 }
 function getUserTime(t = new Date()) {
   let Y = t.getFullYear();
@@ -44,11 +45,12 @@ function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
-function checkIfSaved(readObj) {
-  readNews.map((el, currentIndex) => {
-    if (readObj.src === el.src) {
-      return readNews.splice(currentIndex, 1);
-    }
-    return;
-  });
-}
+  function checkIfSaved(readObj) {
+    readNews.map((el, currentIndex) => {
+      if (readObj.src === el.src) {
+        return readNews.splice(currentIndex, 1);
+      }
+      return;
+    });
+  }
+
