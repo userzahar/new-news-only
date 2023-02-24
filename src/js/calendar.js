@@ -71,11 +71,22 @@ if ((window.location.pathname === '/') || (window.location.pathname === '/index.
     selectedEl.classList.add('selected');
   }
 
-  function setDateForSort(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth();
+  function exstractDateElements(date) {
+   const year = date.getFullYear();
+   const month = date.getMonth();
     const day = date.getDate();
+    return {year, month, day}
+}
+
+  function setDateForRequest({ year, month, day }) {
+    // const year = date.getFullYear();
+    // const month = date.getMonth();
+    // const day = date.getDate();
     return `${year}${addLeadingZero(month + 1)}${addLeadingZero(day)}`;
+  }
+
+  function setDateForSort() {
+    return `${addLeadingZero(day)}.${addLeadingZero(month + 1)}.${year}`;
   }
 
   function setDateForAriaLabel(date) {
@@ -88,7 +99,8 @@ if ((window.location.pathname === '/') || (window.location.pathname === '/index.
   function insertSelectedDate(selectedDates, dateStr, instance) {
     dateStr = selectedDates[0].toLocaleDateString('en-GB');
     instance.input.value = dateStr;
-    instance.input.dataset.date = setDateForSort(selectedDates[0]);
+    instance.input.dataset.date = setDateForRequest(selectedDates[0]);
+    instance.input.dataset.sort = setDateForSort(selectedDates[0])
     instance.selectedDateElem.dateObj = selectedDates[0];
     instance.selectedDateElem.ariaLabel = setDateForAriaLabel(selectedDates[0]);
     instance.latestSelectedDateObj = selectedDates[0];
