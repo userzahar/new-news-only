@@ -34,16 +34,15 @@ export function toLS(e) {
 
   localStorage.setItem('read-news', LSReadNewsJSON);
 
-}
-function getUserTime(t = new Date()) {
-  let Y = t.getFullYear();
-  let M = addLeadingZero(t.getMonth() + 1);
-  let D = addLeadingZero(t.getDate());
-  return `${D}/${M}/${Y}`;
-}
-function addLeadingZero(value) {
-  return value.toString().padStart(2, '0');
-}
+  function getUserTime(t = new Date()) {
+    let Y = t.getFullYear();
+    let M = addLeadingZero(t.getMonth() + 1);
+    let D = addLeadingZero(t.getDate());
+    return `${D}/${M}/${Y}`;
+  }
+  function addLeadingZero(value) {
+    return value.toString().padStart(2, '0');
+  }
 
   function checkIfSaved(readObj) {
     readNews.map((el, currentIndex) => {
@@ -53,4 +52,4 @@ function addLeadingZero(value) {
       return;
     });
   }
-
+}
