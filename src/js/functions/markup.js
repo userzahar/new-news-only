@@ -18,7 +18,7 @@ let markData = {};
 export {markData};
 const paginationContainer = document.getElementById('pagination');
 const emptyCard = `<li class="gallery__item">${weather}</li>`;
-export const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
+export const ICON_HEART = '/new-news-only/sprite.50c1db32.svg#icon-heart';
 const galleryRef = document.querySelector('.gallery__list');
 
 

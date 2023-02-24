@@ -6,10 +6,17 @@ if (fromLS) {
   refs.errorFind.classList.remove('notfind-part-hidden')
   readNews = JSON.parse(fromLS);
 
+} else {readNews = [];
+  refs.errorFind.classList.add('notfind-part-hidden');}
+
+export { readNews };
+
+
 
 export function toLS(e) {
-    if (e.target.className !== 'gallery__link') {
-
+  let readBtn = e.target.closest('.gallery__link');
+  // console.log(btn);
+  if (!readBtn) {
     return;
   }
 
@@ -22,8 +29,10 @@ export function toLS(e) {
     readDate: getUserTime(),
   };
 
+  console.log('readObj', readObj);
   checkIfSaved(readObj);
   readNews.push(readObj);
+  console.log('readNews after push', readNews);
   const LSReadNewsJSON = JSON.stringify(readNews);
 
   localStorage.setItem('read-news', LSReadNewsJSON);

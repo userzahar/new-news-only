@@ -2,7 +2,8 @@ import './js/functions/mqHandler';
 import './js/js-header/dark-mode';
 import './js/js-header/mobile-menu';
 
-import { ICON_HEART } from './js/functions/markup';
+// import { ICON_HEART } from './js/functions/markup';
+const iconHeart = '/new-news-only/sprite.50c1db32.svg#icon-heart';
 import { refs } from './js/refs';
 import {
   favoritesInLocalStorage,
@@ -33,7 +34,7 @@ if (window.location.pathname === '/favorite.html') {
                 <img class="gallery__img" src="${img}" alt=""/>
                  <button type="button" class="gallery__favorite__btn ">
                          <span class="favorite__btn-span add-favorite-btn is-hidden">Add to favorite
-                           <svg width='16' height='16'><use href="${ICON_HEART}"></use>
+                           <svg width='16' height='16'><use href="${iconHeart}"></use>
                     </svg> </span>
                     <span class="favorite__btn-span remove-favorite-btn">Remove from favorite
                                     <svg width='16' height='16' fill="#4440f7"><use href="${ICON_HEART}"></use>
