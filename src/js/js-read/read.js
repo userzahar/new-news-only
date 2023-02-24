@@ -9,9 +9,11 @@ import { ICON_HEART } from '../functions/markup';
 if (window.location.pathname === '/read.html') {
   window.addEventListener('DOMContentLoaded', event => mqHandler());
   window.addEventListener('DOMContentLoaded', event => createDiv(readNews));
+
+  // refs.errorFind.classList.remove('notfind-part-hidden');
   if (readNews.length === 0) {
     refs.readNewsContainer.classList.add('read__news__container__hidden');
-    refs.errorFind.classList.remove('notfind-part-hidden');
+     refs.errorFind.classList.remove('notfind-part-hidden');
   }
 }
 //  refs.errorFind.classList.remove('notfind-part-hidden');

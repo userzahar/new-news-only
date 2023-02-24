@@ -104,6 +104,9 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
       refs.errorFind.classList.add('notfind-part-hidden');
 
       if (intermediateArray.length === 0){
+
+        refs.paginationContainer.hidden = true;
+
          refs.errorFind.classList.remove('notfind-part-hidden');
          refs.galleryContainer.innerHTML = "";
        }
@@ -114,7 +117,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
       createMarkup(markData, srcPage);
     });
 
-    // refs.errorFind.classList.add('notfind-part-hidden');
+     refs.errorFind.classList.add('notfind-part-hidden');
 
       // fetchNews('/svc/search/v2/articlesearch.json', {
 
@@ -133,7 +136,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
 
       
       // console.log(totalPages);
-       refs.errorFind.classList.add('notfind-part-hidden');
+      //  refs.errorFind.classList.add('notfind-part-hidden');
       // console.log(totalItems);
       // if (data.response.docs.length === 0) {
         

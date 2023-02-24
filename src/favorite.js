@@ -20,7 +20,7 @@ refs.errorFind.classList.remove('notfind-part-hidden');
 
 if (window.location.pathname === '/favorite.html') {
   function renderFavorites(element, constMarkup) {
-    refs.errorFind.classList.add('notfind-part-hidden');
+     refs.errorFind.classList.add('notfind-part-hidden');
     element.insertAdjacentHTML('beforeend', constMarkup);
   }
 
@@ -101,7 +101,7 @@ if (window.location.pathname === '/favorite.html') {
     );
 
     favoriteGalleryList.innerHTML = '';
-    refs.errorFind.classList.remove('notfind-part-hidden');
+    // refs.errorFind.classList.remove('notfind-part-hidden');
 
     favoritesInLocalStorage.map(el => {
       renderFavorites(favoriteGalleryList, createMarkupFav(el));
