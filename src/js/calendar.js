@@ -2,6 +2,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { refs } from './refs';
+let selectedDate = '';
 if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
