@@ -101,7 +101,7 @@ if (window.location.pathname === '/favorite.html') {
     );
 
     favoriteGalleryList.innerHTML = '';
-    // refs.errorFind.classList.remove('notfind-part-hidden');
+    refs.errorFind.classList.remove('notfind-part-hidden');
 
     favoritesInLocalStorage.map(el => {
       renderFavorites(favoriteGalleryList, createMarkupFav(el));
