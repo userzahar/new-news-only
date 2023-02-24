@@ -1,4 +1,3 @@
-
 import onResize from "../resize";
 import {getSize} from '../filter'
 const screen = {

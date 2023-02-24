@@ -1,3 +1,4 @@
+
 import { refs } from './refs';
 
 export default function onResize(size, toRemove) {

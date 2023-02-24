@@ -1,3 +1,4 @@
+
 import CategoriesComponent from "./functions/categoriesComponent";
 import refs from "../js/refs";
 

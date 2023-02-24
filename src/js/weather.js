@@ -1,4 +1,3 @@
-
 const d = new Date();
 const y = d.toDateString().split(" ");
 export const weather = `<div class="weather">

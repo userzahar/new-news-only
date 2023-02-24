@@ -1,4 +1,5 @@
-import {initPagination} from '../pagination'
+
+import { initPagination } from '../pagination'
 import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
 import { searchType } from '../news-page';

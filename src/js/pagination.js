@@ -1,4 +1,3 @@
-
 import {createMarkup} from './functions/markup';
 import {clearMarkup} from './functions/markup';
 import { markData } from './functions/markup';

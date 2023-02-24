@@ -7,6 +7,7 @@
       display: inline-block;
       position: relative;
       cursor: pointer;
+
       &::after {
         content: '';
         width: 12px;
@@ -21,6 +22,7 @@
         transform: rotate(224deg);
       }
     }
+
     .title__date__rotate {
       &::after {
         border-bottom: 3px solid #111321;
@@ -31,6 +33,7 @@
         top: 7px;
       }
     }
+
     .gallery__list {
       max-height: 30px;
       justify-content: flex-start;
@@ -39,6 +42,7 @@
       transition: 0.5s;
       border-top: 1px solid #929292;
     }
+
     .gallery__list__open {
       max-height: 10000px;
     }

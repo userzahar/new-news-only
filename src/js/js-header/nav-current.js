@@ -1,3 +1,4 @@
+
 function underlineCurrentPage() {
   let currentPageIsFound = false;
 

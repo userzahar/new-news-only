@@ -12,7 +12,7 @@
 
   &.open-menu {
     transform: translateY(0);
-    opacity:1;
+    opacity: 1;
   }
 
   @media screen and (min-width: $pre_tablet) {
@@ -94,7 +94,7 @@
   //stroke: #f4f4f4;
 }
 
-.open-mob-menu{
+.open-mob-menu {
   height: 100vh;
   overflow-y: hidden;
 }

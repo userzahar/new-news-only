@@ -1,3 +1,4 @@
+
 const baseUrl = 'https://api.nytimes.com';
 const apiKey = 'TSw2QdOoFucel7ybh9h7kC4obHmkxxGl';
 

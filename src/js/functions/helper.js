@@ -1,3 +1,4 @@
+
 export function extractDateElements(date) {
   const newDate = new Date(date);
   const year = newDate.getFullYear();

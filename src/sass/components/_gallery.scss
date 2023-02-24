@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
 
-  @include tablet {
-  }
+  @include tablet {}
 }
 
 .gallery__list {

@@ -1,4 +1,3 @@
-
 .wrap-filter {
   display: flex;
   align-items: baseline;
@@ -9,10 +8,12 @@
 .calendar {
   display: flex;
   justify-content: space-between;
+
   @media only screen and (max-width: 1285px) {
     flex-direction: column-reverse;
     margin: 0 0 0 35px;
   }
+
   p {
     margin-right: 31px;
     font-size: 18px;
@@ -25,16 +26,18 @@
       color: #7f7f82;
       text-align: center;
     }
+
     @media only screen and (max-width: 768px) {
       display: none;
     }
   }
 }
+
 // .calendar__text-tablet,
 // .calendar__text-mobile {
-   
+
 //     display: none;
-  
+
 // }
 // .calendar__text-desktop{
 //     display: block;
@@ -57,24 +60,29 @@
   &.active {
     background-color: #4440f7;
     color: white;
+
     .calendar__icon {
       color: white;
       fill: white;
     }
+
     .date-picker::placeholder {
       color: inherit;
       opacity: 0.9;
     }
+
     .calendar__arrow {
       fill: white;
     }
+
     &.close {
-      .calendar__arrow{
+      .calendar__arrow {
         fill: white;
         translate: translate(0, -50%)rotate(90deg);
       }
     }
   }
+
   .calendar__icon {
     position: absolute;
     top: 50%;
@@ -82,6 +90,7 @@
     transform: translate(0, -50%);
     fill: var(--accent-color);
   }
+
   .calendar__arrow {
     position: absolute;
     right: 12px;
@@ -89,51 +98,58 @@
     transform: translate(0, -50%);
     fill: var(--accent-color);
 
-    &.open{
+    &.open {
       transform: rotate(180deg)translateY(5px);
     }
-      }
+  }
 
 
+}
+
+.date-picker {
+  width: 100%;
+  max-width: 168px;
+  padding: 4px 25px;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.31;
+  letter-spacing: 2%;
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: inherit;
+
+  &::placeholder {
+    color: #111321;
+    opacity: 0.4;
   }
-  .date-picker {
-    width: 100%;
-    max-width: 168px;
-    padding: 4px 25px;
-    border: none;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.31;
-    letter-spacing: 2%;
-    text-align: center;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    color: inherit;
-    &::placeholder {
-      color: #111321;
-      opacity: 0.4;
-    }
-    &:focus {
-      outline: none;
-    }
-    @media only screen and (max-width: 798px) {
-      padding: 4px 15px;
-    }
-    @media only screen and (max-width: 767px) {
-      max-width: 152px;
-    }
+
+  &:focus {
+    outline: none;
   }
+
+  @media only screen and (max-width: 798px) {
+    padding: 4px 15px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    max-width: 152px;
+  }
+}
 
 
 .numInputWrapper {
   position: unset !important;
 }
+
 .flatpickr-calendar {
   border-radius: 20px !important;
   background: #f8f8f8 !important;
   box-shadow: 0px 10px 60px rgb(0 0 0 / 10%) !important;
   position: relative;
+
   .arrowUp {
     width: unset !important;
     height: unset !important;
@@ -153,6 +169,7 @@
       transform: rotate(45deg);
     }
   }
+
   .arrowDown {
     width: unset !important;
     height: unset !important;
@@ -160,6 +177,7 @@
     top: 50% !important;
     right: -16px !important;
     transform: rotate(90deg) translateX(-18%);
+
     &::after {
       content: '';
       width: 9px !important;
@@ -172,16 +190,20 @@
     }
   }
 }
+
 .flatpickr-next-month {
   right: 30% !important;
 }
+
 .flatpickr-current-month {
   left: 0% !important;
 }
+
 .flatpickr-prev-month {
   color: #4440f7 !important;
   fill: #4440f7;
 }
+
 .selected {
   background-color: #4440f7 !important;
 }
@@ -190,11 +212,12 @@
   .wrap__input {
     border: 1px solid white;
   }
+
   .date-picker::placeholder {
     color: #f4f4f4;
   }
+
   .calendar__arrow {
     fill: #f4f4f4;
   }
 }
-

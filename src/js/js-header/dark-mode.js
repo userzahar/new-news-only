@@ -1,3 +1,4 @@
+
 const changeThemeBtn = document.querySelector('.switch-checkbox');
 const bodyTheme = document.querySelector('body');
 const themeDarkEl = document.querySelector('.theme__dark');
