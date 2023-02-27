@@ -133,25 +133,3 @@ function sortPop(date) {
   createMarkup(filtredArr, srcPage);
 
 }
-// sortPop(calendarDate, markData);
-
-// export function fetchSizer(size) {
-
-//   if (size === 'desktop') {
-//     console.log('desk')
-//     // clearMarkup();
-//     // createMarkup(markData, page);
-
-//   } else if (size === 'tablet') {
-//     console.log('tab')
-//     // clearMarkup();
-//     // createMarkup(markData, page);
-//   } else if (size === 'mobile') {
-//     console.log('mobile')
-//     // clearMarkup();
-//     // createMarkup(markData, page);
-//   }
-
-// };
-
-// const encoded = encodeURIComponent('crosswords & games'); //crosswords%20&%20games
