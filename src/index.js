@@ -1,3 +1,4 @@
+import { refs } from './js/refs';
 import onResize from './js/resize';
 import { mqHandler } from './js/functions/mqHandler';
 import getCatagories from './js/filter';
@@ -9,7 +10,6 @@ import './js/js-header/nav-current';
 import { toLS } from './js/functions/saveToLocalStorage';
 import { calendar } from './js/calendar';
 
-import { refs } from './js/refs';
 import { onBtnFavoriteClick } from '../src/js/localStorageFavorite';
 
 
