@@ -103,9 +103,12 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
       normalizeSrc(intermediateArray);
       console.log(markData);
       createMarkup(markData, srcPage);
-    });
-   
       refs.errorFind.classList.add('notfind-part-hidden');
+      if (intermediateArray.length === 0) {
+        refs.errorFind.classList.remove('notfind-part-hidden');
+        refs.galleryContainer.innerHTML = '';
+      }
+    });
 
     };
 
