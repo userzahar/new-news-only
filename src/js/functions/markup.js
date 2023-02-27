@@ -1,12 +1,11 @@
 
-import { initPagination } from '../pagination';
+import {initPagination} from '../pagination'
 import {totalPages} from '../news-page';
 import { mqHandler } from './mqHandler';
 import { searchType } from '../news-page';
 import { renderMarkupWeather } from '../weather';
-
 // import { itemsPerPage } from '../news-page';
-
+// import {weather} from '../weather';
 let itemsPerPage = 8;
 let srartIndex = 0;
 let endIndex = 0;
@@ -19,8 +18,8 @@ export {page};
 let markData = {};
 export {markData};
 const paginationContainer = document.getElementById('pagination');
-// const emptyCard = `<li class="gallery__item">${weather}</li>`;
-export const ICON_HEART = '/new-news-only/sprite.50c1db32.svg#icon-heart';
+const emptyCard = renderMarkupWeather();
+export const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
 const galleryRef = document.querySelector('.gallery__list');
 
 
@@ -45,6 +44,7 @@ const galleryRef = document.querySelector('.gallery__list');
 
 
 function createMarkup(arr, page) {
+
   if (window.innerWidth >= 1280) {
 
     weatherPos = 2;
@@ -101,9 +101,6 @@ function createMarkup(arr, page) {
     });
     const pageMarkup = markup.slice(srartIndex, endIndex);
     // console.log(pageMarkup);
-
-    const emptyCard = `<li class="gallery__item" >${renderMarkupWeather()}</li>`;
-    
     pageMarkup.splice(weatherPos, 0, emptyCard);
     const finishedMkp = pageMarkup.join('');
     // console.log(finishedMkp);
