@@ -63,8 +63,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
   // Do something with the data		
 })
 
-function onSearch(inputData, srcPage) {
-    refs.galleryList.innerHTML = '';
+  function onSearch(inputData, srcPage) {
     const promises = [];
     searchType = 'word';
     // calendarDate = '20230115';
@@ -121,7 +120,7 @@ function createReq(e) {
 
 function onSubmit(e) {
   e.preventDefault();
-  // clearMarkup();
+  clearMarkup();
   onSearch(searchReq, srcPage);
 };
 

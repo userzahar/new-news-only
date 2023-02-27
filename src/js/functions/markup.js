@@ -20,7 +20,7 @@ export {markData};
 const paginationContainer = document.getElementById('pagination');
 const emptyCard = renderMarkupWeather();
 export const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
-const galleryRef = document.querySelector('.gallery__list');
+const galleryRef = document.getElementById('galleryList');
 
 
 // const mql = window.matchMedia('(min-width: 1280px)');
