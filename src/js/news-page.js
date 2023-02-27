@@ -113,6 +113,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
     };
 
 function createReq(e) {
+  e.preventDefault();
   searchReq = e.target.value.trim();
   }
   
