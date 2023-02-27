@@ -29,8 +29,8 @@ if (
   window.location.pathname === '/' ||
   window.location.pathname === '/index.html'
 ) {
-  const formRef = document.querySelector('.search-field');
-  const inputRef = document.querySelector('#search-field__input');
+  const formRef = document.getElementById('form-field');
+  const inputRef = document.getElementById('search-field__input');
   const calendRef = document.querySelector('.date-picker');
 
   formRef.addEventListener('submit', onSubmit);
