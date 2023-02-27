@@ -50,7 +50,7 @@ fetchNews('/svc/mostpopular/v2/viewed/1.json', {
     itemsPerPage = 4;
   }
 
-  totalItems = data.results.length;
+  let totalItems = data.results.length;
   totalPages = Math.ceil(data.results.length / itemsPerPage);
   searchType = 'popular';
   // console.log(searchType);
