@@ -1,6 +1,6 @@
 
 import CategoriesComponent from "./functions/categoriesComponent";
-import refs from "../js/refs";
+import {refs} from "../js/refs";
 
 import { initPagination } from './pagination';
 import { createMarkup } from './functions/markup';

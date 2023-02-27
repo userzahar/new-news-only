@@ -4,15 +4,13 @@ import getCatagories from './js/filter';
 import './js/js-header/dark-mode';
 import './js/js-header/mobile-menu';
 import './js/js-header/nav-current';
-import './js/js-read/read';
-import './js/localStorageFavorite';
+// import './js/js-read/read';
+// import './js/localStorageFavorite';
 import { toLS } from './js/functions/saveToLocalStorage';
-// import './js/functions/eventLiCard';
 import { calendar } from './js/calendar';
 
 import { refs } from './js/refs';
 import { onBtnFavoriteClick } from '../src/js/localStorageFavorite';
-// import 'super-simple-accordions/dist/css/accordions.min.css';
 
 
 
