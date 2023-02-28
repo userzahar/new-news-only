@@ -17,7 +17,7 @@ export {page};
 
 let markData = {};
 export {markData};
-const paginationContainer = document.getElementById('pagination');
+// const paginationContainer = document.getElementById('pagination');
 const emptyCard = renderMarkupWeather();
 export const ICON_HEART = '/sprite.f14d31f7.svg#icon-heart';
 const galleryRef = document.getElementById('galleryList');
@@ -72,8 +72,7 @@ function createMarkup(arr, page) {
     endIndex = srartIndex + itemsPerPage;
     pagBtnQty = 3;
   }
-
-    initPagination(totalPages, pagBtnQty);
+  initPagination(totalPages, pagBtnQty);
   
   const markup = arr.map(el => {
       
