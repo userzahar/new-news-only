@@ -36,7 +36,7 @@ function getSize(scr) {
     if (scrView === 'desktop') {
       categoriesComponent.renderForDesktop();
     }
-  }, 300);
+  }, 500);
 }
 
 let f = {};
