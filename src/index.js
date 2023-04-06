@@ -1,39 +1,20 @@
-import { refs } from './js/refs';
-import onResize from './js/resize';
-import { mqHandler } from './js/functions/mqHandler';
-import getCatagories from './js/filter';
-import './js/js-header/dark-mode';
-import './js/js-header/mobile-menu';
-import './js/js-header/nav-current';
-// import './js/js-read/read';
-// import './js/localStorageFavorite';
-import { toLS } from './js/functions/saveToLocalStorage';
-import { calendar } from './js/calendar';
+import './js/refs/refs';
+import './js/mobileMenu/mobileMenu';
+import './js/mobileMenu/mobileMenuCurrent';
 
-import { onBtnFavoriteClick } from '../src/js/localStorageFavorite';
+import './js/markup/markup';
 
+import './js/newsFilter/filter';
+import './js/newsCard/newsCard';
+import './js/api/weather';
+import './js/weather/weather';
 
+import './js/pagination/search';
+import './js/pagination/fillterPagination';
+import './js/pagination/popular';
+import './js/calendar/calendar';
 
-if (
-  window.location.pathname === '/favorite.html' ||
-  window.location.pathname === '/read.html'
-) {
-  window.addEventListener('DOMContentLoaded', event => mqHandler());
-}
-if (
-  window.location.pathname === '/' ||
-  window.location.pathname === '/index.html'
-) {
-}
+import './js/loader/loader';
+import './js/darkMode/darkMode';
 
-refs.contentContainer.forEach(container =>
-  container.addEventListener('click', toLS)
-);
-
-
-('REF', refs.favoritesContainer);
-
-
-refs.contentContainer.forEach(container => container.addEventListener('click', toLS));
-
-
+import './js/currentPage/currentPage';

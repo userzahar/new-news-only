@@ -1,16 +1,18 @@
-@import './common';
-@import './general-styles/mixins';
-@import './common-elements/calendar';
-@import './general-styles/general-style';
-@import './general-styles/colors';
-@import './components/filter';
-@import './components/footer';
-@import './components/gallery';
-@import './components/header';
-@import './components/pagination';
-@import './components/notfindnews';
-@import './components/weather';
-@import './components/read_page';
+@import './utils/variables';
+@import './utils/mixns';
 
-//@import './read.scss';
+@import './base/common';
+@import './base/reset';
 
+@import './layouts/mobileMenu';
+@import './layouts/header';
+@import './layouts/filter';
+@import './layouts/calendar';
+@import './layouts/newsSection';
+@import './layouts/weather';
+@import './layouts/paginations';
+@import './layouts/footer';
+@import './layouts/loader';
+@import './layouts/errorSearch';
+@import './layouts/readNews';
+@import './layouts/teme';

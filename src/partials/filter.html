@@ -1,0 +1,67 @@
+<section class="filter">
+  <h2 class="is-hidden">Filter</h2>
+  <div class="container filter__container">
+    <div class="filter__wrap js-category-wrapper">
+      <ul class="filter__main-categories main-categories js-main-categories"></ul>
+      <div class="filter__others">
+        <ul class="dropdown-list js-dropdown-list"></ul>
+        <button class="dropdown-btn js-btn-show-others" id="filter-others">
+          <span class="dropdown-btn__text"></span>
+          <svg class="dropdown-btn__icon" width="14" height="14">
+            <use href="./images/sprite.svg#arrow-down"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="calendar-form">
+      <p class="calendar-form__text">Search date news</p>
+
+      <div class="calendarPicker">
+        <button class="choseDataButton" id="choseDataButton" data-time=""></button>
+        <svg class="calendar-icon" width="14" height="14">
+          <use href="./images/sprite.svg#calendar"></use>
+        </svg>
+        <svg class="dropdown-icon" width="14" height="14">
+          <use href="./images/sprite.svg#arrow-down"></use>
+        </svg>
+
+        <div class="container-calendar">
+          <div class="calendar" id="calendar">
+            <div class="calendar-header">
+              <div class="header-left-block">
+                <span class="mounth-year-display" id="mounth-year-display"></span>
+                <button class="year-change" id="next-year">
+                  <svg width="12" height="12">
+                    <use href="./images/sprite.svg#arrow-down"></use>
+                  </svg>
+                </button>
+                <div>
+                  <div class="year-list"></div>
+                </div>
+              </div>
+              <div class="mounth-picker" id="mounth-picker">
+                <button class="month-change" id="pre-month">
+                  <svg class="month-change-prev" width="17" height="17">
+                    <use href="./images/sprite.svg#arrow-down"></use>
+                  </svg>
+                </button>
+                <button class="month-change" id="next-month">
+                  <svg class="month-change-next" width="17" height="17">
+                    <use href="./images/sprite.svg#arrow-down"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="calendar-body">
+              <div class="calendar-week-days"></div>
+              <div class="calendar-days"></div>
+              <div class="calendar-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

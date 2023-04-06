@@ -1,0 +1,51 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+body {
+  font-family: 'Manrope', sans-serif;
+  // font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  //background-color: var(--primary-bg-color);
+
+  position: relative;
+  z-index: -999;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+main {
+  position: relative;
+  z-index: -999;
+  flex-grow: 1;
+
+  overflow: hidden;
+  padding-bottom: 65px;
+
+  @include tablet {
+    padding-bottom: 100px;
+  }
+
+  @include desktop {
+    padding-bottom: 175px;
+  }
+}
+
+.container {
+  max-width: 480px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    max-width: 1280px;
+  }
+}

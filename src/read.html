@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Read news" />
+    <meta name="keywords" content="News, read" />
+    <meta name="author" content="Team 15" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Read</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Read</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins&family=Roboto&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="./sass/index.scss" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="icon" type="image/png" sizes="64x64" href="./images/favicon-64x64.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png" />
-</head>
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicon-16x16.ico"
+    />
+  </head>
 
-<body>
+  <body>
+    <include src="./partials/header.html"></include>
+    <main>
+      <include src="./partials/readNews.html"></include>
+      <include src="./partials/errorSearch.html"></include>
+    </main>
 
-  <include src="./partials/components/header.html"></include>
+    <include src="./partials/footer.html"></include>
+     <include src="./partials/loader.html"></include>
+    <include src="./partials/mobileMenu.html"></include>
 
-  <main>
-    <div class="container read__news__container content__container accordion__container">
-    </div>
-
-    <include src="./partials/components/noRead.html"></include>
-    </div>
-
-  </main>
-
-  <script type="module" src="./read.js"></script>
-
-  <!-- <script type="module" src="./index.js"></script> -->
-</body>
-
+    <script type="module" src="./js/read.js"></script>
+  </body>
 </html>
