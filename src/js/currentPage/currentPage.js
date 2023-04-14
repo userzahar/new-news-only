@@ -1,6 +1,5 @@
 function highlightCurrentPage() {
   let currentPageIsFound = false;
-
   const navLinks = document.querySelectorAll('.nav__link');
   const pageURL = document.URL;
 
