@@ -1,7 +1,6 @@
 import { newsCardTextFormat } from '../markup/card';
 
 const newsCard = document.querySelector('.news__item');
-
 export function linkReadMore(event) {
   const readMore = event.target.closest(`.news__link-more`);
 
