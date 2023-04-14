@@ -28,7 +28,6 @@ export function createNewsCard(
       isFavorite = filteredNews.favorite;
     }
   }
-
   return `
     <li class="news__item ${isRead ? 'opacity' : ''}" style = "order:${
     orderedNumber ? orderedNumber : 0
