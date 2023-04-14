@@ -35,7 +35,6 @@ let temp = [];
 
 singleBtn.innerHTML = `${dateFix(currentDate)}/${dateFix(month + 1)}/${year}`;
 
-// массив с правильным порядком дней недели в текущем месяце
 function getFirstDayOfTheMonth() {
   let firstDayInChosenMonth = new Date(year, month, 1);
   let result = firstDayInChosenMonth.getDay();
@@ -108,14 +107,13 @@ function addEventForDates() {
 yearListButton.addEventListener('click', generateYearList);
 
 function generateYearList() {
-
   yearList.classList.toggle('year-list--active');
   if (yearsListArr.length == 0) {
     for (let i = 1990; i <= 2030; i++) {
-		yearsListArr.push(i);
-	}
+      yearsListArr.push(i);
+    }
     for (let i = 0; i < yearsListArr.length; i++) {
-			yearList.innerHTML += `<button class="yearListButtons">${yearsListArr[i]}</button>`;
+      yearList.innerHTML += `<button class="yearListButtons">${yearsListArr[i]}</button>`;
     }
     addListenerToYearButtons();
     new SimpleBar(yearList, {});
