@@ -8,8 +8,6 @@ async function getPopular() {
     `${BASE_URL}/mostpopular/v2/viewed/1.json?${KEY}`
   );
 
-
-  
   if (articleFetch.ok) {
     const popular = await articleFetch.json();
     return popular.results;
