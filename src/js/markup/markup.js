@@ -6,7 +6,7 @@ import { newsCardTextFormat } from '../markup/card';
 import { createNewsCard } from '../markup/card';
 
 const error =
-  'https://img.freepik.com/free-vector/404-error-with-cute-animal-concept-illustration_114360-1931.jpg';
+  'https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg';
 
 let orderedNumber = 0;
 
