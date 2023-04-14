@@ -8,7 +8,8 @@ const refs = {
   filterOthers: document.getElementById('filter-others'),
   //main
   newsList: document.querySelector('.news__lists'),
-  // favorite
+
+  // favrite
   favorite: document.querySelector('.news'),
   favoriteLists: document.querySelector('.news__lists'),
   errorSearch: document.querySelector('.error-search'),
