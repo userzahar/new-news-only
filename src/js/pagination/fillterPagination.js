@@ -6,7 +6,6 @@ import { scrollTop } from './function';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { refs } from '../refs/refs';
-
 let totalPage = 0;
 let currentPage = 0;
 let newsPerPage = 0;
