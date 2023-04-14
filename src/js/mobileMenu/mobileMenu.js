@@ -7,12 +7,8 @@ import { refs } from '../refs/refs';
       refs.openMenuBtn.getAttribute('aria-expanded') === 'true' || false;
     refs.openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
     refs.mobileMenu.classList.toggle('is-open');
-
-    const scrollLockMethod = isMenuOpen
-      ? enableBodyScroll
-      : disableBodyScroll;
+    const scrollLockMethod = isMenuOpen ? enableBodyScroll : disableBodyScroll;
     scrollLockMethod(document.body);
-
   };
 
   refs.openMenuBtn.addEventListener('click', toggleMenu);
@@ -25,4 +21,4 @@ import { refs } from '../refs/refs';
     refs.openMenuBtn.setAttribute('aria-expanded', false);
     enableBodyScroll(document.body);
   });
-  })();
+})();
