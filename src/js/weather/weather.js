@@ -36,7 +36,6 @@ const fillWeather = async ({ deg, value, city, day, year, imgWeather }) => {
       console.log('Error: ' + error.message);
     }
   };
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       async position => {
