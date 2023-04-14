@@ -1,7 +1,6 @@
 .filter {
   padding-top: 28px;
 }
-
 .filter__container {
   display: flex;
   align-items: center;
@@ -16,13 +15,11 @@
     transform: translateY(0%);
   }
 }
-
 .filter__wrap {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-
 .main-categories {
   display: none;
 
@@ -31,7 +28,6 @@
     gap: 16px;
   }
 }
-
 .main-categories__btn {
   padding: 8px 22px;
 
