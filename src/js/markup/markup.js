@@ -12,7 +12,6 @@ let orderedNumber = 0;
 
 function saveValuesFromCategoryNews(articles) {
   clearNewsList();
-
   const arrNews = articles.map(article => {
     return {
       title: article.title,
