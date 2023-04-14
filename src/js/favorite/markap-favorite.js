@@ -7,7 +7,6 @@ import { showLoader, hideLoader } from '../loader/loader';
 
 const savedNews = localStorage.getItem('news');
 const parsedNews = JSON.parse(savedNews);
-
 showLoader();
 if (!parsedNews) {
   refs.errorSearch.classList.remove('is-hidden');
