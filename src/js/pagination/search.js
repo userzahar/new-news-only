@@ -7,7 +7,6 @@ import { scrollTop } from './function';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const input = document.querySelector('.input');
-
 let totalPage = 0;
 let currentPage = 0;
 let newsPerPage = 0;
