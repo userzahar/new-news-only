@@ -18,7 +18,6 @@ if (window.matchMedia('(max-width: 767.98px)').matches) {
 } else if (window.matchMedia('(min-width: 768px)').matches) {
   newsPerPage = 7;
 }
-
 getPopular()
   .then(news => {
     totalPage = Math.ceil(news.length / newsPerPage);
