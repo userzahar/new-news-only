@@ -4,5 +4,4 @@ function scrollTop() {
     behavior: 'smooth',
   });
 }
-
 export { scrollTop };
