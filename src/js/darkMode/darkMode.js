@@ -27,5 +27,4 @@ function addDarkClassToHTML() {
     }
   } catch (err) {}
 }
-
 addDarkClassToHTML();
